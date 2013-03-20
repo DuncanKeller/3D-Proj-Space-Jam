@@ -86,7 +86,7 @@
     <LinkIncremental>true</LinkIncremental>
     <GenerateManifest>true</GenerateManifest>
     <ExecutablePath>$(DXSDK_DIR)Utilities\bin\x86;$(ExecutablePath)</ExecutablePath>
-    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath);DXUT\Core;DXUT\Optional</IncludePath>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|X64'">
@@ -382,40 +382,42 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="d3dApp.cpp" />
     <ClCompile Include="d3dUtil.cpp" />
+    <ClCompile Include="DXUT\Core\DXUT.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="DXUT\Core\DXUTenum.cpp" />
+    <ClCompile Include="DXUT\Core\DXUTmisc.cpp" />
+    <ClCompile Include="DXUT\Optional\DXUTcamera.cpp" />
+    <ClCompile Include="DXUT\Optional\DXUTgui.cpp" />
+    <ClCompile Include="DXUT\Optional\DXUTres.cpp" />
+    <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp" />
+    <ClCompile Include="DXUT\Optional\SDKmesh.cpp" />
+    <ClCompile Include="DXUT\Optional\SDKmisc.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="LightHelper.cpp" />
     <ClCompile Include="MathHelper.cpp" />
+    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="World.cpp" />
     <ClInclude Include="d3dApp.h" />
+    <ClInclude Include="DXUT\Core\DXUT.h" />
+    <ClInclude Include="DXUT\Core\DXUTenum.h" />
+    <ClInclude Include="DXUT\Core\DXUTmisc.h" />
+    <ClInclude Include="DXUT\Optional\DXUTcamera.h" />
+    <ClInclude Include="DXUT\Optional\DXUTgui.h" />
+    <ClInclude Include="DXUT\Optional\DXUTres.h" />
+    <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h" />
+    <ClInclude Include="DXUT\Optional\SDKmesh.h" />
+    <ClInclude Include="DXUT\Optional\SDKmisc.h" />
+    <ClInclude Include="Mesh.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="World.h" />
     <None Include="..\..\DXUT\Optional\directx.ico" />
-    <ClInclude Include="..\..\DXUT\Core\DXUT.h" />
-    <ClInclude Include="..\..\DXUT\Core\DXUTenum.h" />
-    <ClInclude Include="..\..\DXUT\Core\DXUTmisc.h" />
-    <ClCompile Include="..\..\DXUT\Core\DXUT.cpp">
-      <PrecompiledHeader>Create</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="..\..\DXUT\Core\DXUTenum.cpp" />
-    <ClCompile Include="..\..\DXUT\Core\DXUTmisc.cpp" />
-    <ClInclude Include="..\..\DXUT\Optional\DXUTcamera.h" />
-    <ClInclude Include="..\..\DXUT\Optional\DXUTgui.h" />
-    <ClInclude Include="..\..\DXUT\Optional\DXUTres.h" />
-    <ClInclude Include="..\..\DXUT\Optional\DXUTsettingsdlg.h" />
-    <ClInclude Include="..\..\DXUT\Optional\SDKmesh.h" />
-    <ClInclude Include="..\..\DXUT\Optional\SDKmisc.h" />
-    <ClCompile Include="..\..\DXUT\Optional\DXUTcamera.cpp" />
-    <ClCompile Include="..\..\DXUT\Optional\DXUTgui.cpp" />
-    <ClCompile Include="..\..\DXUT\Optional\DXUTres.cpp" />
-    <ClCompile Include="..\..\DXUT\Optional\DXUTsettingsdlg.cpp" />
-    <ClCompile Include="..\..\DXUT\Optional\SDKmesh.cpp" />
-    <ClCompile Include="..\..\DXUT\Optional\SDKmisc.cpp" />
     <None Include="color.fx" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Triangle.h"
 #include "Sphere.h"
+#include "Mesh.h"
 
 class World
 {

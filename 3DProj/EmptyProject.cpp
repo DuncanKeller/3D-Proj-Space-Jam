@@ -105,9 +105,13 @@ bool BoxApp::Init()
 	w = new World();
 	w->Init(md3dDevice);
 
+	//SetCapture(mhMainWnd);
+	ShowCursor(false);
+
 	BuildGeometryBuffers();
 	BuildFX();
 	BuildVertexLayout();
+
 
 	return true;
 }
@@ -123,6 +127,7 @@ void BoxApp::OnResize()
 
 void BoxApp::UpdateScene(float dt)
 {
+
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -135,6 +140,7 @@ void BoxApp::UpdateScene(float dt)
 
 	XMMATRIX V = XMMatrixLookAtLH(pos, target, up);
 	XMStoreFloat4x4(&mView, V);
+
 }
 
 void BoxApp::DrawScene()
@@ -175,6 +181,7 @@ void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
 
 void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 {
+	
 	if( (btnState & MK_LBUTTON) != 0 )
 	{
 		// Make each pixel correspond to a quarter of a degree.
@@ -199,6 +206,19 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 
 		// Restrict the radius.
 		mRadius = MathHelper::Clamp(mRadius, 3.0f, 15.0f);
+	}
+	else if(mLastMousePos.x!=0&&mLastMousePos.y!=0)
+	{
+		// Make each pixel correspond to a quarter of a degree.
+		float dx = XMConvertToRadians(0.25f*static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(0.25f*static_cast<float>(y - mLastMousePos.y));
+
+		// Update angles based on input to orbit camera around box.
+		mTheta -= dx;
+		mPhi   -= dy;
+
+		// Restrict the angle mPhi.
+		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
 	}
 
 	mLastMousePos.x = x;

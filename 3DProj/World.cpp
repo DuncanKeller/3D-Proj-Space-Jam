@@ -2,6 +2,7 @@
 #include "World.h"
 
 
+
 World::World(void)
 {
 	
@@ -15,6 +16,9 @@ World::~World(void)
 
 void World::Init(ID3D11Device* device)
 {
+	Mesh mesh =Mesh();
+	mesh.Load("Assets/Spaceship.obj");
+
 	float v[] = {
 		-7, -7, 20,
 		 7, -7, 20,
