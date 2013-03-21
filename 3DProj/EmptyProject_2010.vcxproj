@@ -399,6 +399,7 @@
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Ray.cpp" />
+    <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="World.cpp" />
@@ -414,6 +415,7 @@
     <ClInclude Include="DXUT\Optional\SDKmisc.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Ray.h" />
+    <ClInclude Include="Ship.h" />
     <ClInclude Include="Sphere.h" />
     <ClInclude Include="Triangle.h" />
     <ClInclude Include="World.h" />

@@ -100,6 +100,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Ship.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -166,6 +169,9 @@
       <Filter>DXUT</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Ship.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

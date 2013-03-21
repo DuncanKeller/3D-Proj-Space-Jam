@@ -33,6 +33,9 @@ public:
 	int* indices;
 
 	std::string filePath;
+
+	int numVerts;
+	int numInd;
 };
 
 #endif

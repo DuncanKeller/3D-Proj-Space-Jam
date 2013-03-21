@@ -77,7 +77,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 BoxApp::BoxApp(HINSTANCE hInstance)
 : D3DApp(hInstance), mFX(0), mTech(0),
   mfxWorldViewProj(0), mInputLayout(0), 
-  mTheta(1.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(5.0f)
+  mTheta(.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(40.0f)
 {
 	mMainWndCaption = L"Box Demo";
 	
@@ -106,7 +106,7 @@ bool BoxApp::Init()
 	w->Init(md3dDevice);
 
 	//SetCapture(mhMainWnd);
-	ShowCursor(false);
+	//ShowCursor(false);
 
 	BuildGeometryBuffers();
 	BuildFX();
@@ -127,7 +127,6 @@ void BoxApp::OnResize()
 
 void BoxApp::UpdateScene(float dt)
 {
-
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -145,7 +144,7 @@ void BoxApp::UpdateScene(float dt)
 
 void BoxApp::DrawScene()
 {
-	md3dImmediateContext->ClearRenderTargetView(mRenderTargetView, reinterpret_cast<const float*>(&Colors::LightSteelBlue));
+	md3dImmediateContext->ClearRenderTargetView(mRenderTargetView, reinterpret_cast<const float*>(&XMFLOAT4(29.0f/255.0f,0.0f/255.0f,48.0f/255.0f,1)));
 	md3dImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 	md3dImmediateContext->IASetInputLayout(mInputLayout);
@@ -189,8 +188,8 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 		float dy = XMConvertToRadians(0.25f*static_cast<float>(y - mLastMousePos.y));
 
 		// Update angles based on input to orbit camera around box.
-		mTheta += dx;
-		mPhi   += dy;
+		mTheta -= dx;
+		mPhi   -= dy;
 
 		// Restrict the angle mPhi.
 		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
@@ -205,9 +204,9 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 		mRadius += dx - dy;
 
 		// Restrict the radius.
-		mRadius = MathHelper::Clamp(mRadius, 3.0f, 15.0f);
+		mRadius = MathHelper::Clamp(mRadius, 30.0f, 50.0f);
 	}
-	else if(mLastMousePos.x!=0&&mLastMousePos.y!=0)
+	/*else if(mLastMousePos.x!=0&&mLastMousePos.y!=0)
 	{
 		// Make each pixel correspond to a quarter of a degree.
 		float dx = XMConvertToRadians(0.25f*static_cast<float>(x - mLastMousePos.x));
@@ -219,7 +218,7 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 
 		// Restrict the angle mPhi.
 		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
-	}
+	}*/
 
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;

@@ -7,6 +7,7 @@
 #include "Triangle.h"
 #include "Sphere.h"
 #include "Mesh.h"
+#include "Ship.h"
 
 class World
 {

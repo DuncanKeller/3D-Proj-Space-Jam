@@ -37,8 +37,9 @@ bool Mesh::Load( std::string path )
 				Vertex v;
 				float x,y,z;
 				fscanf(file, "%f %f %f\n", &x, &y, &z);
-				v.Pos = XMFLOAT3(x,y,z);
-				v.Color = (const float*)&Colors::Black;
+				v.Pos = XMFLOAT3(x,y,-1.0f*z);
+				//v.Color = (const float*)&Colors::Silver;
+				v.Color = XMFLOAT4(1,x,y,z);
 				verts.push_back(v);
 			}
 			else if ( strcmp( lineHeader, "f" ) == 0 )
@@ -47,12 +48,15 @@ bool Mesh::Load( std::string path )
 				int t1,t2,t3;
 				int n1,n2,n3;
 				fscanf(file, "%d/%d/%d %d/%d/%d %d/%d/%d\n", &v1,&t1,&n1,&v2,&t2,&n2,&v3,&t3,&n3);
-				tris.push_back(v1);
-				tris.push_back(v2);
-				tris.push_back(v3);
+				tris.push_back(v3-1);
+				tris.push_back(v2-1);
+				tris.push_back(v1-1);
 			}
 		}
 	}
+
+	numVerts = verts.size();
+	numInd = tris.size();
 
 	vertices = new Vertex[verts.size()]();
 	indices = new int[tris.size()]();
