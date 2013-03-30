@@ -3,11 +3,11 @@
 #include <d3dx11.h>
 #include <xnamath.h>
 #include <vector>
-#include "Entity.h"
-#include "Triangle.h"
-#include "Sphere.h"
 #include "Mesh.h"
+#include "Entity.h"
+
 #include "Ship.h"
+class BoxApp;
 
 class World
 {
@@ -18,10 +18,11 @@ public:
 	void TransformEntity(Entity);
 	void TransformWorld();
 
-	void Init(ID3D11Device*);
+	void Init(ID3D11Device*,BoxApp*);
 	void Draw(ID3D11DeviceContext*, ID3DX11EffectTechnique*);
 
 	std::vector<Entity*> entities;
+	BoxApp* mainApp;
 
 };
 

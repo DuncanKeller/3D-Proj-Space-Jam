@@ -8,17 +8,17 @@
 #include <vector>
 #include "d3dUtil.h"
 
-#include "Sphere.h"
-/*struct Vertex
+struct Vertex
 {
 	XMFLOAT3 Pos;
+	XMFLOAT3 Norm;
 	XMFLOAT4 Color;
 };
 
 struct TStruct
 {
 	Vertex v0, v1, v2;
-};*/
+};
 
 class Mesh
 {

@@ -400,8 +400,6 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Ship.cpp" />
-    <ClCompile Include="Sphere.cpp" />
-    <ClCompile Include="Triangle.cpp" />
     <ClCompile Include="World.cpp" />
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="DXUT\Core\DXUT.h" />
@@ -413,11 +411,10 @@
     <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h" />
     <ClInclude Include="DXUT\Optional\SDKmesh.h" />
     <ClInclude Include="DXUT\Optional\SDKmisc.h" />
+    <ClInclude Include="EmptyProject.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Ship.h" />
-    <ClInclude Include="Sphere.h" />
-    <ClInclude Include="Triangle.h" />
     <ClInclude Include="World.h" />
     <None Include="..\..\DXUT\Optional\directx.ico" />
     <None Include="color.fx" />

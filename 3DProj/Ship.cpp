@@ -1,6 +1,7 @@
 #include "DXUT.h"
 #include "Ship.h"
-
+#include "EmptyProject.h"
+#include "World.h"
 Ship::Ship(void)
 {
 	mesh = Mesh();
@@ -11,9 +12,9 @@ Ship::~Ship(void)
 
 }
 
-void Ship::Init(ID3D11Device* device)
+void Ship::Init(ID3D11Device* device,World* w)
 {
-	mesh.Load("Assets/SpaceShip.obj");
+	mesh.Load("Assets/SpaceShipSmooth.obj");
 
 	vertNum = mesh.numInd;
 
@@ -38,4 +39,13 @@ void Ship::Init(ID3D11Device* device)
 	D3D11_SUBRESOURCE_DATA iinitData2;
 	iinitData2.pSysMem = mesh.indices;
 	HR(device->CreateBuffer(&ibd2, &iinitData2, &indexBuffer));
+
+	XMMATRIX I = XMMatrixIdentity();
+	XMStoreFloat4x4(&mWorld, I);
+
+	mat.Ambient  = XMFLOAT4(0.77f, 0.77f, 0.77f, 1.0f);
+	mat.Diffuse  = XMFLOAT4(0.77f, 0.77f, 0.77f, 1.0f);
+	mat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
+
+	worldPTR = w;
 }

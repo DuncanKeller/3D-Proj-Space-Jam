@@ -1,3 +1,3 @@
 ﻿  EmptyProject.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(147): warning C4238: nonstandard extension used : class rvalue used as lvalue
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(120): warning C4238: nonstandard extension used : class rvalue used as lvalue
   EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe

@@ -64,12 +64,6 @@
     <ClCompile Include="Ray.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Sphere.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Triangle.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="DXUT\Core\DXUT.cpp">
       <Filter>DXUT</Filter>
     </ClCompile>
@@ -132,12 +126,6 @@
     <ClInclude Include="Ray.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Sphere.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangle.h">
-      <Filter>Headers</Filter>
-    </ClInclude>
     <ClInclude Include="World.h">
       <Filter>Headers</Filter>
     </ClInclude>
@@ -172,6 +160,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Ship.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EmptyProject.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

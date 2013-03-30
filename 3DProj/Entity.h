@@ -3,7 +3,9 @@
 #include <d3dx11.h>
 #include <xnamath.h>
 #include "d3dUtil.h"
+#include "Mesh.h"
 
+class World;
 class Entity
 {
 public:
@@ -11,12 +13,15 @@ public:
 	~Entity(void);
 	// modify to return normal and color
 	bool Intersects(/* add ray */);
-	virtual void Init(ID3D11Device*);
+	virtual void Init(ID3D11Device*,World*);
 	void Draw(ID3D11DeviceContext*, ID3DX11EffectTechnique*);
 
 	XMFLOAT3 pos;
 	XMFLOAT4 color;
 
+	XMFLOAT4X4 mWorld;
+	World* worldPTR;
+	Material mat;
 protected:
 	ID3D11Buffer* vertexBuffer;
 	ID3D11Buffer* indexBuffer;

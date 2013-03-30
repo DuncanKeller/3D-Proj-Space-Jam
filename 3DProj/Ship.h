@@ -8,13 +8,15 @@
 #include "d3dUtil.h"
 #include "Mesh.h"
 
+class World;
+
 class Ship : public Entity
 {
 public:
 	Ship();
 	~Ship();
 
-	void Init(ID3D11Device*);
+	void Init(ID3D11Device*,World*);
 private:
 	Mesh mesh;
 

@@ -10,52 +10,7 @@
 //***************************************************************************************
 
 #include "DXUT.h"
-#include "d3dApp.h"
-#include "d3dx11Effect.h"
-#include "MathHelper.h"
-#include "World.h"
-
-
-class BoxApp : public D3DApp
-{
-public:
-	BoxApp(HINSTANCE hInstance);
-	~BoxApp();
-
-	bool Init();
-	void OnResize();
-	void UpdateScene(float dt);
-	void DrawScene(); 
-
-	void OnMouseDown(WPARAM btnState, int x, int y);
-	void OnMouseUp(WPARAM btnState, int x, int y);
-	void OnMouseMove(WPARAM btnState, int x, int y);
-
-private:
-	void BuildGeometryBuffers();
-	void BuildFX();
-	void BuildVertexLayout();
-
-private:
-
-	ID3DX11Effect* mFX;
-	ID3DX11EffectTechnique* mTech;
-	ID3DX11EffectMatrixVariable* mfxWorldViewProj;
-
-	ID3D11InputLayout* mInputLayout;
-
-	XMFLOAT4X4 mWorld;
-	XMFLOAT4X4 mView;
-	XMFLOAT4X4 mProj;
-
-	float mTheta;
-	float mPhi;
-	float mRadius;
-
-	POINT mLastMousePos;
-
-	World* w;
-};
+#include "EmptyProject.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
 				   PSTR cmdLine, int showCmd)
@@ -85,9 +40,26 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	mLastMousePos.y = 0;
 
 	XMMATRIX I = XMMatrixIdentity();
-	XMStoreFloat4x4(&mWorld, I);
+	//XMStoreFloat4x4(&mWorld, I);
 	XMStoreFloat4x4(&mView, I);
 	XMStoreFloat4x4(&mProj, I);
+
+	// Directional light.
+	mDirLight.Ambient  = XMFLOAT4(0.1f, 0.1f, 0.2f, 1.0f);
+	mDirLight.Diffuse  = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	mDirLight.Specular = XMFLOAT4(0.5f, 0.5f, 0.8f, 1.0f);
+	mDirLight.Direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
+
+	mPointLight.Ambient  = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Diffuse  = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Specular = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
+	mPointLight.Range    =40.0f;
+	mPointLight.Position = XMFLOAT3(0.0f,20.0f,20.0f);
+
+	//mShipMat.Ambient  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
+	//mShipMat.Diffuse  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
+	//mShipMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
 }
 
 BoxApp::~BoxApp()
@@ -103,7 +75,7 @@ bool BoxApp::Init()
 		return false;
 
 	w = new World();
-	w->Init(md3dDevice);
+	w->Init(md3dDevice,this);
 
 	//SetCapture(mhMainWnd);
 	//ShowCursor(false);
@@ -132,6 +104,7 @@ void BoxApp::UpdateScene(float dt)
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
 	float y = mRadius*cosf(mPhi);
 
+	mPointLight.Position=XMFLOAT3(10.0f,10.0f,10.0f*sinf(2.0f*mTimer.TotalTime() ));
 	// Build the view matrix.
 	XMVECTOR pos    = XMVectorSet(x, y, z, 1.0f);
 	XMVECTOR target = XMVectorZero();
@@ -151,14 +124,22 @@ void BoxApp::DrawScene()
     md3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	// Set constants
-	XMMATRIX world = XMLoadFloat4x4(&mWorld);
-	XMMATRIX view  = XMLoadFloat4x4(&mView);
-	XMMATRIX proj  = XMLoadFloat4x4(&mProj);
-	XMMATRIX worldViewProj = world*view*proj;
+// 	XMMATRIX world = XMLoadFloat4x4(&mWorld);
+// 	XMMATRIX view  = XMLoadFloat4x4(&mView);
+// 	XMMATRIX proj  = XMLoadFloat4x4(&mProj);
+// 	XMMATRIX worldViewProj = world*view*proj;
 
-	mfxWorldViewProj->SetMatrix(reinterpret_cast<float*>(&worldViewProj));
+	//mfxWorldViewProj->SetMatrix(reinterpret_cast<float*>(&worldViewProj));
+	mfxDirLight->SetRawValue(&mDirLight, 0, sizeof(mDirLight));
+	mfxPointLight->SetRawValue(&mPointLight, 0, sizeof(mPointLight));
 
 
+	float x = mRadius*sinf(mPhi)*cosf(mTheta);
+	float z = mRadius*sinf(mPhi)*sinf(mTheta);
+	float y = mRadius*cosf(mPhi);
+
+	XMFLOAT3 mEyePosW = XMFLOAT3(x,y,z);
+	mfxEyePosW->SetRawValue(&mEyePosW, 0, sizeof(mEyePosW));
 	
 	w->Draw(md3dImmediateContext, mTech);
 
@@ -240,7 +221,7 @@ void BoxApp::BuildFX()
  
 	ID3D10Blob* compiledShader = 0;
 	ID3D10Blob* compilationMsgs = 0;
-	HRESULT hr = D3DX11CompileFromFile(L"FX/color.fx", 0, 0, 0, "fx_5_0", shaderFlags, 
+	HRESULT hr = D3DX11CompileFromFile(L"FX/Lighting.fx", 0, 0, 0, "fx_5_0", shaderFlags, 
 		0, 0, &compiledShader, &compilationMsgs, 0);
 
 	// compilationMsgs can store errors or warnings.
@@ -262,8 +243,15 @@ void BoxApp::BuildFX()
 	// Done with compiled shader.
 	ReleaseCOM(compiledShader);
 
-	mTech    = mFX->GetTechniqueByName("ColorTech");
-	mfxWorldViewProj = mFX->GetVariableByName("gWorldViewProj")->AsMatrix();
+	mTech                = mFX->GetTechniqueByName("LightTech");
+	mfxWorldViewProj     = mFX->GetVariableByName("gWorldViewProj")->AsMatrix();
+	mfxWorld             = mFX->GetVariableByName("gWorld")->AsMatrix();
+	mfxWorldInvTranspose = mFX->GetVariableByName("gWorldInvTranspose")->AsMatrix();
+	mfxEyePosW           = mFX->GetVariableByName("gEyePosW")->AsVector();
+	mfxDirLight          = mFX->GetVariableByName("gDirLight");
+	mfxPointLight        = mFX->GetVariableByName("gPointLight");
+	mfxSpotLight         = mFX->GetVariableByName("gSpotLight");
+	mfxMaterial          = mFX->GetVariableByName("gMaterial");
 }
 
 void BoxApp::BuildVertexLayout()
@@ -272,13 +260,14 @@ void BoxApp::BuildVertexLayout()
 	D3D11_INPUT_ELEMENT_DESC vertexDesc[] =
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
+		{"COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 
 	// Create the input layout
     D3DX11_PASS_DESC passDesc;
     mTech->GetPassByIndex(0)->GetDesc(&passDesc);
-	HR(md3dDevice->CreateInputLayout(vertexDesc, 2, passDesc.pIAInputSignature, 
+	HR(md3dDevice->CreateInputLayout(vertexDesc, 3, passDesc.pIAInputSignature, 
 		passDesc.IAInputSignatureSize, &mInputLayout));
 }
  
