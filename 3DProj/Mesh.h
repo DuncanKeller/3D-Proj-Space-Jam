@@ -12,7 +12,7 @@ struct Vertex
 {
 	XMFLOAT3 Pos;
 	XMFLOAT3 Norm;
-	XMFLOAT4 Color;
+	XMFLOAT2 TexVert;
 };
 
 struct TStruct
@@ -33,6 +33,7 @@ public:
 	int* indices;
 
 	std::string filePath;
+	LPCWSTR texturePath;
 
 	int numVerts;
 	int numInd;

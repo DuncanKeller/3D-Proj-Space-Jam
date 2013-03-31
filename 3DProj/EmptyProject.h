@@ -22,6 +22,8 @@ public:
 	void OnMouseDown(WPARAM btnState, int x, int y);
 	void OnMouseUp(WPARAM btnState, int x, int y);
 	void OnMouseMove(WPARAM btnState, int x, int y);
+
+	void SetDiffuseMap(ID3D11ShaderResourceView* tex);
 	
 	ID3DX11Effect* mFX;
 	ID3DX11EffectTechnique* mTech;
@@ -30,8 +32,11 @@ public:
 	ID3DX11EffectVectorVariable* mfxEyePosW;
 	ID3DX11EffectVariable* mfxDirLight;
 	ID3DX11EffectVariable* mfxPointLight;
+	ID3DX11EffectVariable* mfxPointLight2;
 	ID3DX11EffectVariable* mfxSpotLight;
 	ID3DX11EffectVariable* mfxMaterial;
+
+	ID3DX11EffectShaderResourceVariable* diffuseMap;
 	XMFLOAT4X4 mView;
 	XMFLOAT4X4 mProj;
 
@@ -59,6 +64,7 @@ private:
 
 	DirectionalLight mDirLight;
 	PointLight mPointLight;
+	PointLight mPointLight2;
 	SpotLight mSpotLight;
 	Material mShipMat;
 

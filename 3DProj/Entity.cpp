@@ -66,6 +66,8 @@ void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 
 	worldPTR->mainApp->mfxWorldViewProj->SetMatrix(reinterpret_cast<float*>(&worldViewProj));
 
+	worldPTR->mainApp->SetDiffuseMap(mDiffuseSRV);
+
 	D3DX11_TECHNIQUE_DESC techDesc;
     tech->GetDesc( &techDesc );
     for(UINT p = 0; p < techDesc.Passes; ++p)

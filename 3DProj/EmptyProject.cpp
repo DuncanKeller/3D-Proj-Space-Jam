@@ -50,12 +50,19 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	mDirLight.Specular = XMFLOAT4(0.5f, 0.5f, 0.8f, 1.0f);
 	mDirLight.Direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
 
-	mPointLight.Ambient  = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
-	mPointLight.Diffuse  = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
-	mPointLight.Specular = XMFLOAT4(0.3f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Ambient  = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Diffuse  = XMFLOAT4(0.6f, 0.0f, 0.0f, 1.0f);
+	mPointLight.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
 	mPointLight.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
-	mPointLight.Range    =40.0f;
+	mPointLight.Range    =50.0f;
 	mPointLight.Position = XMFLOAT3(0.0f,20.0f,20.0f);
+
+	mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
+	mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
+	mPointLight2.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
+	mPointLight2.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
+	mPointLight2.Range    =50.0f;
+	mPointLight2.Position = XMFLOAT3(0.0f,20.0f,20.0f);
 
 	//mShipMat.Ambient  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	//mShipMat.Diffuse  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
@@ -104,7 +111,8 @@ void BoxApp::UpdateScene(float dt)
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
 	float y = mRadius*cosf(mPhi);
 
-	mPointLight.Position=XMFLOAT3(10.0f,10.0f,10.0f*sinf(2.0f*mTimer.TotalTime() ));
+	mPointLight.Position=XMFLOAT3(10.0f,10.0f,20.0f*sinf(2.0f*mTimer.TotalTime() ));
+	mPointLight2.Position=XMFLOAT3(-10.0f,10.0f,20.0f*-1.0f*sinf(2.0f*mTimer.TotalTime() ));
 	// Build the view matrix.
 	XMVECTOR pos    = XMVectorSet(x, y, z, 1.0f);
 	XMVECTOR target = XMVectorZero();
@@ -132,6 +140,7 @@ void BoxApp::DrawScene()
 	//mfxWorldViewProj->SetMatrix(reinterpret_cast<float*>(&worldViewProj));
 	mfxDirLight->SetRawValue(&mDirLight, 0, sizeof(mDirLight));
 	mfxPointLight->SetRawValue(&mPointLight, 0, sizeof(mPointLight));
+	mfxPointLight2->SetRawValue(&mPointLight2, 0, sizeof(mPointLight2));
 
 
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
@@ -250,8 +259,11 @@ void BoxApp::BuildFX()
 	mfxEyePosW           = mFX->GetVariableByName("gEyePosW")->AsVector();
 	mfxDirLight          = mFX->GetVariableByName("gDirLight");
 	mfxPointLight        = mFX->GetVariableByName("gPointLight");
+	mfxPointLight2       = mFX->GetVariableByName("gPointLight2");
 	mfxSpotLight         = mFX->GetVariableByName("gSpotLight");
 	mfxMaterial          = mFX->GetVariableByName("gMaterial");
+
+	diffuseMap = mFX->GetVariableByName("gDiffuseMap")->AsShaderResource();
 }
 
 void BoxApp::BuildVertexLayout()
@@ -261,7 +273,7 @@ void BoxApp::BuildVertexLayout()
 	{
 		{"POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		{"NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		{"COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0}
+		{"TEXCOORD",    0, DXGI_FORMAT_R32G32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0}
 	};
 
 	// Create the input layout
@@ -270,4 +282,9 @@ void BoxApp::BuildVertexLayout()
 	HR(md3dDevice->CreateInputLayout(vertexDesc, 3, passDesc.pIAInputSignature, 
 		passDesc.IAInputSignatureSize, &mInputLayout));
 }
- 
+
+void BoxApp::SetDiffuseMap( ID3D11ShaderResourceView* tex )
+{
+	diffuseMap->SetResource(tex);
+}
+

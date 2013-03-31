@@ -14,8 +14,9 @@ Ship::~Ship(void)
 
 void Ship::Init(ID3D11Device* device,World* w)
 {
-	mesh.Load("Assets/SpaceShipSmooth.obj");
+	mesh.Load("Assets/SpaceShipTex.obj");
 
+	mesh.texturePath =(L"Assets/ShipTexture.bmp");
 	vertNum = mesh.numInd;
 
 	D3D11_BUFFER_DESC vbd;
@@ -43,9 +44,12 @@ void Ship::Init(ID3D11Device* device,World* w)
 	XMMATRIX I = XMMatrixIdentity();
 	XMStoreFloat4x4(&mWorld, I);
 
-	mat.Ambient  = XMFLOAT4(0.77f, 0.77f, 0.77f, 1.0f);
-	mat.Diffuse  = XMFLOAT4(0.77f, 0.77f, 0.77f, 1.0f);
-	mat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
-
+	mat.Ambient  = XMFLOAT4(0.0f, 0.0f, 1.0f, 1.0f);
+	mat.Diffuse  = XMFLOAT4(0.77f, 0.77f, 1.0f, 1.0f);
+	mat.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 16.0f);
 	worldPTR = w;
+
+	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
+
+	
 }

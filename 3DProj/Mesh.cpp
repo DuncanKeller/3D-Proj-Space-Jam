@@ -25,6 +25,7 @@ bool Mesh::Load( std::string path )
 	std::vector<Vertex> faceVerts = std::vector<Vertex>();
 	std::vector<int> tris = std::vector<int>();
 	std::vector<XMFLOAT3>norms = std::vector<XMFLOAT3>();
+	std::vector<XMFLOAT2>vertTex = std::vector<XMFLOAT2>();
 	char lineHeader[128];
 	while(true)
 	{
@@ -41,7 +42,7 @@ bool Mesh::Load( std::string path )
 				v.Pos = XMFLOAT3(x,y,-1.0f*z);
 				//v.Color = (const float*)&Colors::Silver;
 				v.Norm = XMFLOAT3(0,0,0);
-				v.Color = XMFLOAT4(1,x,y,z);
+				//v.Color = XMFLOAT4(1,x,y,z);
 				verts.push_back(v);
 			}
 			else if(strcmp(lineHeader, "vn")==0)
@@ -51,6 +52,14 @@ bool Mesh::Load( std::string path )
 				fscanf(file, "%f %f %f\n", &x, &y, &z);
 				norm = XMFLOAT3(x,y,-1.0f*z);
 				norms.push_back(norm);
+			}
+			else if(strcmp(lineHeader, "vt")==0)
+			{
+				XMFLOAT2 vertT;
+				float x,y;
+				fscanf(file, "%f %f\n",&x,&y);
+				vertT = XMFLOAT2(x,-1.0f*y);
+				vertTex.push_back(vertT);
 			}
 			else if ( strcmp( lineHeader, "f" ) == 0 )
 			{
@@ -65,6 +74,10 @@ bool Mesh::Load( std::string path )
 				verts[v1-1].Norm=norms[n1-1];
 				verts[v2-1].Norm=norms[n2-1];
 				verts[v3-1].Norm=norms[n3-1];
+
+				verts[v1-1].TexVert=vertTex[t1-1];
+				verts[v2-1].TexVert=vertTex[t2-1];
+				verts[v3-1].TexVert=vertTex[t3-1];
 
 				faceVerts.push_back(verts[v3-1]);
 				faceVerts.push_back(verts[v2-1]);

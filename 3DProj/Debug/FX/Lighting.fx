@@ -10,6 +10,7 @@ cbuffer cbPerFrame
 {
 	DirectionalLight gDirLight;
 	PointLight gPointLight;
+	PointLight gPointLight2;
 	SpotLight gSpotLight;
 	float3 gEyePosW;
 };
@@ -74,7 +75,7 @@ float4 PS(VertexOut pin) : SV_Target
 	diffuse += D;
 	spec    += S;
 
-	ComputeSpotLight(gMaterial, gSpotLight, pin.PosW, pin.NormalW, toEyeW, A, D, S);
+	ComputePointLight(gMaterial, gPointLight2, pin.PosW, pin.NormalW, toEyeW, A, D, S);
 	ambient += A;
 	diffuse += D;
 	spec    += S;

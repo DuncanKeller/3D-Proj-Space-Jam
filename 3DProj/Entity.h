@@ -22,6 +22,7 @@ public:
 	XMFLOAT4X4 mWorld;
 	World* worldPTR;
 	Material mat;
+	ID3D11ShaderResourceView* mDiffuseSRV;
 protected:
 	ID3D11Buffer* vertexBuffer;
 	ID3D11Buffer* indexBuffer;
