@@ -16,7 +16,7 @@ void Ship::Init(ID3D11Device* device,World* w)
 {
 	mesh.Load("Assets/SpaceShipTex.obj");
 
-	mesh.texturePath =(L"Assets/ShipTexture.bmp");
+	mesh.texturePath =(L"Assets/ShipTex2.bmp");
 	vertNum = mesh.numInd;
 
 	D3D11_BUFFER_DESC vbd;

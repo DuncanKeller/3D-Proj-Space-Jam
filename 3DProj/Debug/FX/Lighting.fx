@@ -15,6 +15,8 @@ cbuffer cbPerFrame
 	float3 gEyePosW;
 };
 
+Texture2D gDiffuseMap;
+
 cbuffer cbPerObject
 {
 	float4x4 gWorld;
@@ -27,6 +29,7 @@ struct VertexIn
 {
 	float3 PosL    : POSITION;
 	float3 NormalL : NORMAL;
+	float2 Tex	   : TEXCOORD;
 };
 
 struct VertexOut
@@ -34,6 +37,16 @@ struct VertexOut
 	float4 PosH    : SV_POSITION;
     float3 PosW    : POSITION;
     float3 NormalW : NORMAL;
+	float2 Tex	   : TEXCOORD;
+};
+
+SamplerState samAnisotropic
+{
+	Filter = ANISOTROPIC;
+	MaxAnisotropy = 4;
+	
+	AddressU = WRAP;
+	AddressV = WRAP;
 };
 
 VertexOut VS(VertexIn vin)
@@ -47,6 +60,8 @@ VertexOut VS(VertexIn vin)
 	// Transform to homogeneous clip space.
 	vout.PosH = mul(float4(vin.PosL, 1.0f), gWorldViewProj);
 	
+	vout.Tex = mul(float4(vin.Tex,0.0f,1.0f),1.0f).xy;
+	
 	return vout;
 }
   
@@ -56,7 +71,12 @@ float4 PS(VertexOut pin) : SV_Target
     pin.NormalW = normalize(pin.NormalW); 
 
 	float3 toEyeW = normalize(gEyePosW - pin.PosW);
-
+	
+	float4 texColor = float4(1,1,1,1);
+	texColor = gDiffuseMap.Sample(samAnisotropic,pin.Tex);
+	
+	float4 litColor = texColor;
+	
 	// Start with a sum of zero. 
 	float4 ambient = float4(0.0f, 0.0f, 0.0f, 0.0f);
 	float4 diffuse = float4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -80,10 +100,10 @@ float4 PS(VertexOut pin) : SV_Target
 	diffuse += D;
 	spec    += S;
 	   
-	float4 litColor = ambient + diffuse + spec;
+	litColor = texColor*(ambient+diffuse)+spec;
 
 	// Common to take alpha from diffuse material.
-	litColor.a = gMaterial.Diffuse.a;
+	litColor.a = gMaterial.Diffuse.a*texColor.a;
 
     return litColor;
 }
