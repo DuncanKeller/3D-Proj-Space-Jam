@@ -21,6 +21,10 @@ bool Mesh::Load( std::string path )
 		return false;
 	}
 
+	float xMax, xMin, yMax, yMin, zMax, zMin;
+	xMax = -FLT_MAX; yMax = -FLT_MAX; zMax = -FLT_MAX;
+	xMin = FLT_MAX; yMin = FLT_MAX; zMin = FLT_MAX;
+
 	std::vector<Vertex> verts = std::vector<Vertex>();
 	std::vector<Vertex> faceVerts = std::vector<Vertex>();
 	std::vector<int> tris = std::vector<int>();
@@ -44,6 +48,22 @@ bool Mesh::Load( std::string path )
 				v.Norm = XMFLOAT3(0,0,0);
 				//v.Color = XMFLOAT4(1,x,y,z);
 				verts.push_back(v);
+				// check max and min values
+				if(x > xMax) {
+					xMax = x;
+				} else if(x < xMin) {
+					xMin = x;
+				}
+				if(y > yMax) {
+					yMax = y;
+				} else if(y < yMin) {
+					yMin = y;
+				}
+				if(z > zMax) {
+					zMax = z;
+				} else if(z < zMin) {
+					zMin = z;
+				}
 			}
 			else if(strcmp(lineHeader, "vn")==0)
 			{
@@ -87,6 +107,9 @@ bool Mesh::Load( std::string path )
 				tris.push_back(faceVerts.size()-1);
 			}
 		}
+
+		// set bounding box
+		bounding = new BoundingBox(xMin, xMax, yMin, yMax, zMin, zMax);
 	}
 
 	numVerts = faceVerts.size();

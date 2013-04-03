@@ -97,6 +97,7 @@
     <ClCompile Include="Ship.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="BoundingBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -165,6 +166,7 @@
     <ClInclude Include="EmptyProject.h">
       <Filter>Headers</Filter>
     </ClInclude>
+    <ClInclude Include="BoundingBox.h" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

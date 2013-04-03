@@ -1,16 +1,33 @@
-﻿Build started 4/3/2013 2:56:06 PM.
+﻿Build started 4/3/2013 3:44:08 PM.
      1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Touching "Debug\EmptyProject.unsuccessfulbuild".
+         Creating "Debug\EmptyProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Entity.cpp Ship.cpp World.cpp EmptyProject.cpp  
-         Entity.cpp
-         Ship.cpp
-         World.cpp
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt EmptyProject.cpp Entity.cpp Mesh.cpp Ship.cpp World.cpp  
          EmptyProject.cpp
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(140): warning C4238: nonstandard extension used : class rvalue used as lvalue
+         Entity.cpp
+         Mesh.cpp
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(34): warning C4127: conditional expression is constant
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(36): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(45): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(72): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(80): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(89): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(121): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(125): warning C4018: '<' : signed/unsigned mismatch
+         Ship.cpp
+         World.cpp
          Generating Code...
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(129): warning C4715: 'Mesh::Load' : not all control paths return a value
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -18,6 +35,7 @@
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe" /INCREMENTAL /NOLOGO /LIBPATH:d3d11.lib /LIBPATH:d3dcompiler.lib /LIBPATH:d3dx11d.lib /LIBPATH:d3dx10d.lib /LIBPATH:d3dx9d.lib /LIBPATH:dxerr.lib /LIBPATH:dxguid.lib /LIBPATH:winmm.lib /LIBPATH:comctl32.lib /LIBPATH:Effects11d.lib /LIBPATH:d3d11.lib /LIBPATH:d3dcompiler.lib /LIBPATH:d3dx11d.lib /LIBPATH:d3dx10d.lib /LIBPATH:d3dx9d.lib /LIBPATH:dxerr.lib /LIBPATH:dxguid.lib /LIBPATH:winmm.lib /LIBPATH:comctl32.lib /LIBPATH:kernel32.lib /LIBPATH:user32.lib /LIBPATH:gdi32.lib /LIBPATH:winspool.lib /LIBPATH:comdlg32.lib /LIBPATH:advapi32.lib /LIBPATH:shell32.lib /LIBPATH:ole32.lib /LIBPATH:oleaut32.lib /LIBPATH:uuid.lib /LIBPATH:odbc32.lib /LIBPATH:odbccp32.lib Effects11d.lib d3d11.lib d3dcompiler.lib d3dx11d.lib d3dx10d.lib d3dx9d.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EmptyProject.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.lib" /MACHINE:X86 Debug\EmptyProject.res
          Debug\EmptyProject.exe.embed.manifest.res
+         Debug\BoundingBox.obj
          Debug\Camera.obj
          Debug\d3dApp.obj
          Debug\d3dUtil.obj
@@ -52,4 +70,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.32
+Time Elapsed 00:00:05.00

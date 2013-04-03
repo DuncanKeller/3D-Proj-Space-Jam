@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include "d3dUtil.h"
+#include "BoundingBox.h"
 
 struct Vertex
 {
@@ -37,6 +38,8 @@ public:
 
 	int numVerts;
 	int numInd;
+
+	BoundingBox* bounding;
 };
 
 #endif
