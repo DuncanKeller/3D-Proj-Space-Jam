@@ -56,14 +56,17 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 
 	mPointLight.Ambient  = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
 	mPointLight.Diffuse  = XMFLOAT4(0.6f, 0.0f, 0.0f, 1.0f);
-	mPointLight.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
+	mPointLight.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 	mPointLight.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
 	mPointLight.Range    =50.0f;
 	mPointLight.Position = XMFLOAT3(0.0f,20.0f,20.0f);
 
+	//mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
+	//mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
+	//mPointLight2.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
 	mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
 	mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
-	mPointLight2.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
+	mPointLight2.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 	mPointLight2.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
 	mPointLight2.Range    =50.0f;
 	mPointLight2.Position = XMFLOAT3(0.0f,20.0f,20.0f);
@@ -84,17 +87,23 @@ bool BoxApp::Init()
 {
 	if(!D3DApp::Init())
 		return false;
-
+	GetWindowRect(mhMainWnd,&rc);
+	int midX= (rc.right+rc.left)/2;
+	int midY= (rc.top+rc.bottom)/2;
+	mLastMousePos.x = midX;
+	mLastMousePos.y = midY;
+	SetCursorPos(midX,midY);
+	ClipCursor(&rc);
 	w = new World();
 	w->Init(md3dDevice,this);
 
+	cam = new Camera();
 	//SetCapture(mhMainWnd);
-	//ShowCursor(false);
+	ShowCursor(false);
 
 	BuildGeometryBuffers();
 	BuildFX();
 	BuildVertexLayout();
-
 
 	return true;
 }
@@ -106,10 +115,37 @@ void BoxApp::OnResize()
 	// The window resized, so update the aspect ratio and recompute the projection matrix.
 	XMMATRIX P = XMMatrixPerspectiveFovLH(0.25f*MathHelper::Pi, AspectRatio(), 1.0f, 1000.0f);
 	XMStoreFloat4x4(&mProj, P);
+
+	GetWindowRect(mhMainWnd,&rc);
+	//ClipCursor(&rc);
 }
 
 void BoxApp::UpdateScene(float dt)
 {
+	POINT mousepos;
+	GetCursorPos(&mousepos);
+	int mousex=mousepos.x;
+	int mousey=mousepos.y;
+
+	// Make each pixel correspond to a quarter of a degree.
+	float dx = XMConvertToRadians(0.25f*static_cast<float>(mousex - mLastMousePos.x));
+	float dy = XMConvertToRadians(0.25f*static_cast<float>(mousey - mLastMousePos.y));
+
+	// Update angles based on input to orbit camera around box.
+	mTheta -= dx;
+	mPhi   -= dy;
+
+	// Restrict the angle mPhi.
+	mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
+
+	int midX= (rc.right+rc.left)/2;
+	int midY= (rc.top+rc.bottom)/2;
+
+ 	//
+	mLastMousePos.x = midX;
+	mLastMousePos.y = midY;
+	SetCursorPos(midX,midY);
+
 	if(wDown==true)
 		w->playerShip->pos.z-=.003;
 	if(aDown==true)
@@ -127,10 +163,16 @@ void BoxApp::UpdateScene(float dt)
 	mPointLight2.Position=XMFLOAT3(-10.0f,10.0f,20.0f*-1.0f*sinf(2.0f*mTimer.TotalTime() ));
 	// Build the view matrix.
 	XMVECTOR pos    = XMVectorSet(x, y, z, 1.0f);
-	XMVECTOR target = XMVectorZero();
-	XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
+	//XMVECTOR target = XMVectorZero();
+	//XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
-	XMMATRIX V = XMMatrixLookAtLH(pos, target, up);
+	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
+	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
+	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);
+	XMVECTOR camerapos = XMVectorAdd(XMVectorAdd(XMVectorScale(up,40.0f),XMVectorScale(fwd,-50.0f)),shippos);
+	XMVECTOR target = XMVectorAdd(XMVectorScale(fwd,20.0f),shippos);
+	XMStoreFloat3(&cam->pos,camerapos);
+	XMMATRIX V = XMMatrixLookAtLH(camerapos, target, up);
 	XMStoreFloat4x4(&mView, V);
 
 }
@@ -160,7 +202,7 @@ void BoxApp::DrawScene()
 	float y = mRadius*cosf(mPhi);
 
 	XMFLOAT3 mEyePosW = XMFLOAT3(x,y,z);
-	mfxEyePosW->SetRawValue(&mEyePosW, 0, sizeof(mEyePosW));
+	mfxEyePosW->SetRawValue(&cam->pos, 0, sizeof(cam->pos));
 	
 	w->Draw(md3dImmediateContext, mTech);
 
@@ -181,8 +223,11 @@ void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
 }
 
 void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
-{
-	
+{/*
+	POINT pos;
+	GetCursorPos(&pos);
+	x=pos.x;
+	y=pos.y;
 	if( (btnState & MK_LBUTTON) != 0 )
 	{
 		// Make each pixel correspond to a quarter of a degree.
@@ -208,11 +253,11 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 		// Restrict the radius.
 		mRadius = MathHelper::Clamp(mRadius, 30.0f, 50.0f);
 	}
-	/*else if(mLastMousePos.x!=0&&mLastMousePos.y!=0)
+	else if(mLastMousePos.x!=0&&mLastMousePos.y!=0)
 	{
 		// Make each pixel correspond to a quarter of a degree.
-		float dx = XMConvertToRadians(0.25f*static_cast<float>(x - mLastMousePos.x));
-		float dy = XMConvertToRadians(0.25f*static_cast<float>(y - mLastMousePos.y));
+		float dx = XMConvertToRadians(10.0f*static_cast<float>(x - mLastMousePos.x));
+		float dy = XMConvertToRadians(10.0f*static_cast<float>(y - mLastMousePos.y));
 
 		// Update angles based on input to orbit camera around box.
 		mTheta -= dx;
@@ -220,10 +265,20 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 
 		// Restrict the angle mPhi.
 		mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
-	}*/
+	}
+	
+	int midX= (rc.right+rc.left)/2;
+	int midY= (rc.top+rc.bottom)/2;
 
+ 	if(x<midX-100||x>midX+100)
+ 		x=midX;
+ 	if(y<midY-100||y>midY+100)
+ 		y=midY;
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;
+	SetCursorPos(x,y);
+	*/
+
 }
 
 void BoxApp::OnKeyDown(WPARAM keyState)
@@ -241,6 +296,9 @@ void BoxApp::OnKeyDown(WPARAM keyState)
 		break;
 	case 'D':
 		dDown = true;
+		break;
+	case 0x1B:
+		exit(0);
 		break;
 	};
 }

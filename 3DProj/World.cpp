@@ -28,10 +28,18 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 {
 	playerShip = new Ship();
 	entities.push_back(playerShip);
+	Ship* tempShip = new Ship();
+	entities.push_back(tempShip);
+
 	for(std::vector<Entity*>::iterator iter = entities.begin(); iter < entities.end(); iter++)
 	{
 		(*iter)->Init(device,this);
 	}
+	tempShip->pos=XMFLOAT3(20,0,0);
+
+	EStation* temp = new EStation();
+	temp->Init(device, this,XMFLOAT3(0,0,-100));
+	entities.push_back(temp);
 	mainApp=mApp;
 }
 

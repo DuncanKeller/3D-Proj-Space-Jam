@@ -12,6 +12,7 @@ public:
 
 	XMFLOAT3 pos;
 	XMFLOAT3 up;
+	XMFLOAT3 right;
 	XMFLOAT3 target;
 
 };

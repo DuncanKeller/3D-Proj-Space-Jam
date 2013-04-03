@@ -394,7 +394,9 @@
     <ClCompile Include="DXUT\Optional\DXUTsettingsdlg.cpp" />
     <ClCompile Include="DXUT\Optional\SDKmesh.cpp" />
     <ClCompile Include="DXUT\Optional\SDKmisc.cpp" />
+    <ClCompile Include="EFighter.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EStation.cpp" />
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="LightHelper.cpp" />
     <ClCompile Include="MathHelper.cpp" />
@@ -413,7 +415,9 @@
     <ClInclude Include="DXUT\Optional\DXUTsettingsdlg.h" />
     <ClInclude Include="DXUT\Optional\SDKmesh.h" />
     <ClInclude Include="DXUT\Optional\SDKmisc.h" />
+    <ClInclude Include="EFighter.h" />
     <ClInclude Include="EmptyProject.h" />
+    <ClInclude Include="EStation.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Ship.h" />

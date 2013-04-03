@@ -97,7 +97,15 @@
     <ClCompile Include="Ship.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="BoundingBox.cpp" />
+    <ClCompile Include="BoundingBox.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="EFighter.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="EStation.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -166,7 +174,15 @@
     <ClInclude Include="EmptyProject.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="BoundingBox.h" />
+    <ClInclude Include="BoundingBox.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EFighter.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="EStation.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

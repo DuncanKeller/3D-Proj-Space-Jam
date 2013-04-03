@@ -6,6 +6,7 @@
 #include "d3dx11Effect.h"
 #include "MathHelper.h"
 #include "World.h"
+#include "Camera.h"
 
 
 class BoxApp : public D3DApp
@@ -14,6 +15,8 @@ public:
 	BoxApp(HINSTANCE hInstance);
 	~BoxApp();
 
+	RECT rc;
+	RECT rw;
 	bool Init();
 	void OnResize();
 	void UpdateScene(float dt);
@@ -49,6 +52,8 @@ public:
 	bool aDown;
 	bool sDown;
 	bool dDown;
+
+	Camera* cam;
 private:
 	void BuildGeometryBuffers();
 	void BuildFX();

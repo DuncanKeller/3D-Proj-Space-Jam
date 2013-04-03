@@ -7,6 +7,7 @@
 #include "Entity.h"
 
 #include "Ship.h"
+#include "EStation.h"
 class BoxApp;
 
 class World

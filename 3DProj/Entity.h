@@ -17,6 +17,10 @@ public:
 	void Draw(ID3D11DeviceContext*, ID3DX11EffectTechnique*);
 
 	XMFLOAT3 pos;
+	XMFLOAT3 scale;
+	XMFLOAT3 fwd;
+	XMFLOAT3 up;
+	XMFLOAT3 right;
 	XMFLOAT4 color;
 
 	XMFLOAT4X4 mWorld;
