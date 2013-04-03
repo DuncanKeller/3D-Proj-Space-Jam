@@ -14,6 +14,16 @@ World::~World(void)
 
 }
 
+void World::AddEntity(Entity e)
+{
+	entities.push_back(&e);
+}
+
+void World::AddEntity(Entity* e)
+{
+	entities.push_back(e);
+}
+
 void World::Init(ID3D11Device* device,BoxApp* mApp)
 {
 	playerShip = new Ship();

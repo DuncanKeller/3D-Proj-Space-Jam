@@ -15,6 +15,7 @@ public:
 	World(void);
 	~World(void);
 	void AddEntity(Entity);
+	void AddEntity(Entity*);
 	void TransformEntity(Entity);
 	void TransformWorld();
 
