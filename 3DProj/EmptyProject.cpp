@@ -39,6 +39,10 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	mLastMousePos.x = 0;
 	mLastMousePos.y = 0;
 
+	wDown = false;
+	aDown = false;
+	sDown = false;
+	dDown = false;
 	XMMATRIX I = XMMatrixIdentity();
 	//XMStoreFloat4x4(&mWorld, I);
 	XMStoreFloat4x4(&mView, I);
@@ -106,6 +110,14 @@ void BoxApp::OnResize()
 
 void BoxApp::UpdateScene(float dt)
 {
+	if(wDown==true)
+		w->playerShip->pos.z-=.003;
+	if(aDown==true)
+		w->playerShip->pos.x+=.003;
+	if(sDown==true)
+		w->playerShip->pos.z+=.003;
+	if(dDown==true)
+		w->playerShip->pos.x-=.003;
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -213,6 +225,44 @@ void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
 	mLastMousePos.x = x;
 	mLastMousePos.y = y;
 }
+
+void BoxApp::OnKeyDown(WPARAM keyState)
+{
+	switch(keyState)
+	{
+	case 'W':
+		wDown = true;
+		break;
+	case 'S':
+		sDown = true;
+		break;
+	case 'A':
+		aDown = true;
+		break;
+	case 'D':
+		dDown = true;
+		break;
+	};
+}
+
+void BoxApp::OnKeyUp(WPARAM keyState)
+{
+	switch(keyState)
+	{
+	case 'W':
+		wDown = false;
+		break;
+	case 'S':
+		sDown = false;
+		break;
+	case 'A':
+		aDown = false;
+		break;
+	case 'D':
+		dDown = false;
+		break;
+	};
+};
 
 void BoxApp::BuildGeometryBuffers()
 {

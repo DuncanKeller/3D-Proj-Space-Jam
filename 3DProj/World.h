@@ -22,6 +22,7 @@ public:
 	void Draw(ID3D11DeviceContext*, ID3DX11EffectTechnique*);
 
 	std::vector<Entity*> entities;
+	Ship* playerShip;
 	BoxApp* mainApp;
 
 };

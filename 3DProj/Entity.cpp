@@ -47,6 +47,12 @@ void Entity::Init(ID3D11Device* md3dDevice,World* w)
 
 void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 {
+	XMMATRIX I = XMMatrixIdentity();
+	XMVECTOR translate = XMLoadFloat3(&pos);
+	
+	I*=XMMatrixTranslationFromVector(translate);
+	XMStoreFloat4x4(&mWorld, I);
+
 	UINT stride = sizeof(Vertex);
     UINT offset = 0;
     context->IASetVertexBuffers(0, 1, &vertexBuffer, &stride, &offset);

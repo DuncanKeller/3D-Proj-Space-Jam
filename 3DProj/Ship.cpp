@@ -14,6 +14,7 @@ Ship::~Ship(void)
 
 void Ship::Init(ID3D11Device* device,World* w)
 {
+	pos = XMFLOAT3(0,0,0);
 	mesh.Load("Assets/SpaceShipTex.obj");
 
 	mesh.texturePath =(L"Assets/ShipTex2.bmp");

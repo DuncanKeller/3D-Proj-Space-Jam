@@ -23,6 +23,9 @@ public:
 	void OnMouseUp(WPARAM btnState, int x, int y);
 	void OnMouseMove(WPARAM btnState, int x, int y);
 
+	void OnKeyDown(WPARAM keyState);
+	void OnKeyUp(WPARAM keyState);
+
 	void SetDiffuseMap(ID3D11ShaderResourceView* tex);
 	
 	ID3DX11Effect* mFX;
@@ -41,6 +44,11 @@ public:
 	XMFLOAT4X4 mProj;
 
 	ID3DX11EffectMatrixVariable* mfxWorldViewProj;
+
+	bool wDown;
+	bool aDown;
+	bool sDown;
+	bool dDown;
 private:
 	void BuildGeometryBuffers();
 	void BuildFX();
