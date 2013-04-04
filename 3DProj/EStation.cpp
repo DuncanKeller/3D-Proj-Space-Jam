@@ -22,6 +22,9 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 #pragma region meshing
 	mesh.Load("Assets/EStation.obj");
 
+	XMVECTOR scaleVect=  XMLoadFloat3(&scale);
+	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity()*XMMatrixScalingFromVector(scaleVect));
+
 	mesh.texturePath =(L"Assets/ShipTex2.bmp");
 	vertNum = mesh.numInd;
 

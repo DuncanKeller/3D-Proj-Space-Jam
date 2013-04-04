@@ -1,2 +1,5 @@
-﻿  EFighter.cpp
+﻿  Camera.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(73): warning C4189: 'targpos' : local variable is initialized but not referenced
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(96): warning C4189: 'targpos' : local variable is initialized but not referenced
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(121): warning C4189: 'targpos' : local variable is initialized but not referenced
   EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe

@@ -10,3 +10,127 @@ Camera::Camera(void)
 Camera::~Camera(void)
 {
 }
+
+void Camera::Update()
+{
+	XMVECTOR targfwd = XMLoadFloat3(&targetEntity->fwd);
+	XMVECTOR targup = XMLoadFloat3(&targetEntity->up);
+	XMVECTOR targpos = XMLoadFloat3(&targetEntity->pos);
+	XMVECTOR targright = XMLoadFloat3(&targetEntity->right);
+
+// 	D3DXVec3Normalize(&tarView, &tarView);
+// 
+// 	D3DXVec3Cross(&tarUp, &tarView, &tarRight);
+// 	D3DXVec3Normalize(&tarUp, &tarUp);
+// 
+// 	D3DXVec3Cross(&tarRight, &tarUp, &tarView);
+// 	D3DXVec3Normalize(&tarRight, &tarRight);
+// 
+// 	// Do the same for the camerafs vectors
+// 	D3DXVec3Normalize(&camView, &camView);
+// 
+// 	D3DXVec3Cross(&camUp, &camView, &camRight);
+// 	D3DXVec3Normalize(&camUp, &camUp);
+// 
+// 	D3DXVec3Cross(&camRight, &camUp, &camView);
+// 	D3DXVec3Normalize(&camRight, &camRight);
+	targfwd = XMVector3Normalize(targfwd);
+	
+	targup = XMVector3Cross(targfwd,targright);
+	targup = XMVector3Normalize(targup);
+
+	targright = XMVector3Cross(targup,targfwd);
+	targright = XMVector3Normalize(targright);
+
+	XMStoreFloat3(&targetEntity->fwd,targfwd);
+	XMStoreFloat3(&targetEntity->up,targup);
+	XMStoreFloat3(&targetEntity->right,targright);
+
+	XMVECTOR camerapos = XMVectorAdd(XMVectorAdd(XMVectorScale(targup,upOffset),XMVectorScale(targfwd,fwdOffset)),targpos);
+	XMVECTOR target = XMVectorAdd(XMVectorScale(targfwd,20.0f),targpos);
+	XMStoreFloat3(&pos,camerapos);
+	
+	XMMATRIX V = XMMatrixLookAtLH(camerapos, target, targup);
+	XMStoreFloat4x4(viewMat, V);
+}
+
+void Camera::Init(XMFLOAT4X4* view, Entity* targ )
+{
+	viewMat = view;
+	targetEntity = targ;
+	fwdOffset = -50.0f;
+	upOffset = 50.0f;
+
+	Update();
+}
+
+void Camera::Yaw(float angle)
+{
+	XMVECTOR targfwd = XMLoadFloat3(&targetEntity->fwd);
+	XMVECTOR targup = XMLoadFloat3(&targetEntity->up);
+	XMVECTOR targright = XMLoadFloat3(&targetEntity->right);
+
+	XMVECTOR targpos = XMLoadFloat3(&targetEntity->pos);
+
+	XMMATRIX yaw; 
+	yaw = XMMatrixRotationAxis(targup,D3DXToRadian(angle));
+
+	targfwd = XMVector3Transform(targfwd,yaw);
+	targright = XMVector3Transform(targright,yaw);
+
+	XMMATRIX targWorld = XMLoadFloat4x4(&targetEntity->mWorldNoTransl);
+	targWorld = targWorld*yaw;
+	XMStoreFloat4x4(&targetEntity->mWorldNoTransl,targWorld);
+
+	XMStoreFloat3(&targetEntity->fwd,targfwd);
+	XMStoreFloat3(&targetEntity->right,targright);
+
+}
+
+void Camera::Pitch(float angle)
+{
+	XMVECTOR targfwd = XMLoadFloat3(&targetEntity->fwd);
+	XMVECTOR targup = XMLoadFloat3(&targetEntity->up);
+	XMVECTOR targright = XMLoadFloat3(&targetEntity->right);
+
+	XMVECTOR targpos = XMLoadFloat3(&targetEntity->pos);
+
+	XMMATRIX pitch; 
+	pitch = XMMatrixRotationAxis(targright,D3DXToRadian(angle));
+
+
+
+	targfwd = XMVector3Transform(targfwd,pitch);
+	targup = XMVector3Transform(targup,pitch);
+
+	XMMATRIX targWorld = XMLoadFloat4x4(&targetEntity->mWorldNoTransl);
+	targWorld = targWorld*pitch;
+	XMStoreFloat4x4(&targetEntity->mWorldNoTransl,targWorld);
+
+	XMStoreFloat3(&targetEntity->fwd,targfwd);
+	XMStoreFloat3(&targetEntity->up,targup);
+
+}
+
+void Camera::Roll( float angle )
+{
+	XMVECTOR targfwd = XMLoadFloat3(&targetEntity->fwd);
+	XMVECTOR targup = XMLoadFloat3(&targetEntity->up);
+	XMVECTOR targright = XMLoadFloat3(&targetEntity->right);
+
+	XMVECTOR targpos = XMLoadFloat3(&targetEntity->pos);
+
+	XMMATRIX roll; 
+	roll = XMMatrixRotationAxis(targfwd,D3DXToRadian(angle));
+
+	targright = XMVector3Transform(targright,roll);
+	targup = XMVector3Transform(targup,roll);
+
+	XMMATRIX targWorld = XMLoadFloat4x4(&targetEntity->mWorldNoTransl);
+	targWorld = targWorld*roll;
+	XMStoreFloat4x4(&targetEntity->mWorldNoTransl,targWorld);
+
+	XMStoreFloat3(&targetEntity->right,targright);
+	XMStoreFloat3(&targetEntity->up,targup);
+
+}

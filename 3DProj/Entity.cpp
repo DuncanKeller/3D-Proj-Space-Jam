@@ -47,11 +47,12 @@ void Entity::Init(ID3D11Device* md3dDevice,World* w)
 
 void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 {
-	XMMATRIX I = XMMatrixIdentity();
+	//XMMATRIX I = XMMatrixIdentity();
 	XMVECTOR translate = XMLoadFloat3(&pos);
-	XMVECTOR scaleVect=  XMLoadFloat3(&scale);
+	//XMVECTOR scaleVect=  XMLoadFloat3(&scale);
 
-	I=XMMatrixScalingFromVector(scaleVect)*XMMatrixTranslationFromVector(translate)*I;
+	XMMATRIX I=XMLoadFloat4x4(&mWorldNoTransl);
+	I=I*XMMatrixTranslationFromVector(translate);
 	XMStoreFloat4x4(&mWorld, I);
 
 	UINT stride = sizeof(Vertex);

@@ -43,6 +43,8 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	aDown = false;
 	sDown = false;
 	dDown = false;
+	eDown = false;
+	qDown = false;
 	XMMATRIX I = XMMatrixIdentity();
 	//XMStoreFloat4x4(&mWorld, I);
 	XMStoreFloat4x4(&mView, I);
@@ -98,6 +100,8 @@ bool BoxApp::Init()
 	w->Init(md3dDevice,this);
 
 	cam = new Camera();
+	cam->Init(&mView, w->playerShip);
+
 	//SetCapture(mhMainWnd);
 	ShowCursor(false);
 
@@ -128,15 +132,18 @@ void BoxApp::UpdateScene(float dt)
 	int mousey=mousepos.y;
 
 	// Make each pixel correspond to a quarter of a degree.
-	float dx = XMConvertToRadians(0.25f*static_cast<float>(mousex - mLastMousePos.x));
-	float dy = XMConvertToRadians(0.25f*static_cast<float>(mousey - mLastMousePos.y));
+	float dx = 0.25f*static_cast<float>(mousex - mLastMousePos.x);
+	float dy = 0.25f*static_cast<float>(mousey - mLastMousePos.y);
 
+	cam->Pitch(dy);
+	cam->Yaw(dx);
+	
 	// Update angles based on input to orbit camera around box.
-	mTheta -= dx;
-	mPhi   -= dy;
+	//mTheta -= dx;
+	//mPhi   -= dy;
 
 	// Restrict the angle mPhi.
-	mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
+	//mPhi = MathHelper::Clamp(mPhi, 0.1f, MathHelper::Pi-0.1f);
 
 	int midX= (rc.right+rc.left)/2;
 	int midY= (rc.top+rc.bottom)/2;
@@ -147,13 +154,37 @@ void BoxApp::UpdateScene(float dt)
 	SetCursorPos(midX,midY);
 
 	if(wDown==true)
-		w->playerShip->pos.z-=.003;
+	{
+		w->playerShip->pos.x=w->playerShip->fwd.x*.015+w->playerShip->pos.x;
+		w->playerShip->pos.y=w->playerShip->fwd.y*.015+w->playerShip->pos.y;
+		w->playerShip->pos.z=w->playerShip->fwd.z*.015+w->playerShip->pos.z;
+	}
 	if(aDown==true)
-		w->playerShip->pos.x+=.003;
+	{
+		w->playerShip->pos.x=w->playerShip->right.x*-.015+w->playerShip->pos.x;
+		w->playerShip->pos.y=w->playerShip->right.y*-.015+w->playerShip->pos.y;
+		w->playerShip->pos.z=w->playerShip->right.z*-.015+w->playerShip->pos.z;
+	}
 	if(sDown==true)
-		w->playerShip->pos.z+=.003;
+	{
+		w->playerShip->pos.x=w->playerShip->fwd.x*-.015+w->playerShip->pos.x;
+		w->playerShip->pos.y=w->playerShip->fwd.y*-.015+w->playerShip->pos.y;
+		w->playerShip->pos.z=w->playerShip->fwd.z*-.015+w->playerShip->pos.z;
+	}
 	if(dDown==true)
-		w->playerShip->pos.x-=.003;
+	{
+		w->playerShip->pos.x=w->playerShip->right.x*.015+w->playerShip->pos.x;
+		w->playerShip->pos.y=w->playerShip->right.y*.015+w->playerShip->pos.y;
+		w->playerShip->pos.z=w->playerShip->right.z*.015+w->playerShip->pos.z;
+	}
+	if(eDown==true)
+	{
+		cam->Roll(-.05);
+	}
+	if(qDown==true)
+	{
+		cam->Roll(.05);
+	}
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -166,14 +197,15 @@ void BoxApp::UpdateScene(float dt)
 	//XMVECTOR target = XMVectorZero();
 	//XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
-	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
-	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
-	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);
-	XMVECTOR camerapos = XMVectorAdd(XMVectorAdd(XMVectorScale(up,40.0f),XMVectorScale(fwd,-50.0f)),shippos);
-	XMVECTOR target = XMVectorAdd(XMVectorScale(fwd,20.0f),shippos);
-	XMStoreFloat3(&cam->pos,camerapos);
-	XMMATRIX V = XMMatrixLookAtLH(camerapos, target, up);
-	XMStoreFloat4x4(&mView, V);
+	cam->Update();
+// 	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
+// 	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
+// 	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);
+// 	XMVECTOR camerapos = XMVectorAdd(XMVectorAdd(XMVectorScale(up,40.0f),XMVectorScale(fwd,-50.0f)),shippos);
+// 	XMVECTOR target = XMVectorAdd(XMVectorScale(fwd,20.0f),shippos);
+// 	XMStoreFloat3(&cam->pos,camerapos);
+// 	XMMATRIX V = XMMatrixLookAtLH(camerapos, target, up);
+// 	XMStoreFloat4x4(&mView, V);
 
 }
 
@@ -211,15 +243,15 @@ void BoxApp::DrawScene()
 
 void BoxApp::OnMouseDown(WPARAM btnState, int x, int y)
 {
-	mLastMousePos.x = x;
-	mLastMousePos.y = y;
+	//mLastMousePos.x = x;
+	//mLastMousePos.y = y;
 
-	SetCapture(mhMainWnd);
+	//SetCapture(mhMainWnd);
 }
 
 void BoxApp::OnMouseUp(WPARAM btnState, int x, int y)
 {
-	ReleaseCapture();
+	//ReleaseCapture();
 }
 
 void BoxApp::OnMouseMove(WPARAM btnState, int x, int y)
@@ -297,6 +329,12 @@ void BoxApp::OnKeyDown(WPARAM keyState)
 	case 'D':
 		dDown = true;
 		break;
+	case 'E':
+		eDown = true;
+		break;
+	case 'Q':
+		qDown = true;
+		break;
 	case 0x1B:
 		exit(0);
 		break;
@@ -318,6 +356,12 @@ void BoxApp::OnKeyUp(WPARAM keyState)
 		break;
 	case 'D':
 		dDown = false;
+		break;
+	case 'E':
+		eDown = false;
+		break;
+	case 'Q':
+		qDown = false;
 		break;
 	};
 };

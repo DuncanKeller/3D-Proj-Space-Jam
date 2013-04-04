@@ -23,6 +23,7 @@ public:
 	XMFLOAT3 right;
 	XMFLOAT4 color;
 
+	XMFLOAT4X4 mWorldNoTransl;
 	XMFLOAT4X4 mWorld;
 	World* worldPTR;
 	Material mat;

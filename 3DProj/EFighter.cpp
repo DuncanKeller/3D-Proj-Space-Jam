@@ -22,6 +22,8 @@ void EFighter::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 #pragma region meshing
 	mesh.Load("Assets/SpaceShipTex.obj");
 
+	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
+
 	mesh.texturePath =(L"Assets/ShipTex2.bmp");
 	vertNum = mesh.numInd;
 
