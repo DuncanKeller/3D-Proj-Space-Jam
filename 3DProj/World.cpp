@@ -2,6 +2,7 @@
 #include "World.h"
 
 
+
 World::World(void)
 {
 	
@@ -40,7 +41,6 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 	temp->Init(device, this,XMFLOAT3(0,0,-100));
 	entities.push_back(temp);
 	mainApp=mApp;
-
 }
 
 void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)

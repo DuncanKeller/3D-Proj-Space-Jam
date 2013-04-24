@@ -17,6 +17,13 @@ public:
 	~Ship();
 
 	void Init(ID3D11Device*,World*);
+
+	void push(float speed);
+	void strafe(float speed);
+	void update();
+
+	float maxVel2;
+	float vdec;
 private:
 	Mesh mesh;
 

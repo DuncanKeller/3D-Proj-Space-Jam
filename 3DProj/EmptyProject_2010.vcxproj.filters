@@ -106,7 +106,6 @@
     <ClCompile Include="EStation.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Asteroid.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -184,7 +183,6 @@
     <ClInclude Include="EStation.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Asteroid.h" />
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

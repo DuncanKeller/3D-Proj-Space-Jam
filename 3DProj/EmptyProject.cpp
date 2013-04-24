@@ -153,38 +153,17 @@ void BoxApp::UpdateScene(float dt)
 	mLastMousePos.y = midY;
 	SetCursorPos(midX,midY);
 
-	if(wDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*.015+w->playerShip->pos.z;
-	}
-	if(aDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*-.015+w->playerShip->pos.z;
-	}
-	if(sDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*-.015+w->playerShip->pos.z;
-	}
-	if(dDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*.015+w->playerShip->pos.z;
-	}
-	if(eDown==true)
-	{
-		cam->Roll(-.05);
-	}
-	if(qDown==true)
-	{
-		cam->Roll(.05);
-	}
+	// push in forward direction, strafe sideways
+	if(wDown==true) w->playerShip->push(.015);
+	if(aDown==true) w->playerShip->strafe(-.015);
+	if(sDown==true) w->playerShip->push(-.015);
+	if(dDown==true) w->playerShip->strafe(.015);
+	
+	if(eDown==true) cam->Roll(-.05);
+	if(qDown==true) cam->Roll(.05);
+
+	w->playerShip->update();
+	
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
