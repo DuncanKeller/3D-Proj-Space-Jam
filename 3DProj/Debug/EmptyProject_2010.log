@@ -1,5 +1,24 @@
-﻿  Camera.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(73): warning C4189: 'targpos' : local variable is initialized but not referenced
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(96): warning C4189: 'targpos' : local variable is initialized but not referenced
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\camera.cpp(121): warning C4189: 'targpos' : local variable is initialized but not referenced
-  EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe
+﻿Build started 4/24/2013 3:27:16 PM.
+     1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\EmptyProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       ResourceCompile:
+         All outputs are up-to-date.
+       ManifestResourceCompile:
+         All outputs are up-to-date.
+       Link:
+         All outputs are up-to-date.
+       Manifest:
+         All outputs are up-to-date.
+         All outputs are up-to-date.
+       FinalizeBuildStatus:
+         Deleting file "Debug\EmptyProject.unsuccessfulbuild".
+         Touching "Debug\EmptyProject.lastbuildstate".
+     1>Done Building Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" (build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.12

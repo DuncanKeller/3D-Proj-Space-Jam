@@ -379,6 +379,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="BoundingBox.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="d3dApp.cpp" />
@@ -404,6 +405,7 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="World.cpp" />
+    <ClInclude Include="Asteroid.h" />
     <ClInclude Include="BoundingBox.h" />
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="DXUT\Core\DXUT.h" />
