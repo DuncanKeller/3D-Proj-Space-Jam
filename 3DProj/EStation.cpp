@@ -4,6 +4,7 @@
 #include "World.h"
 
 const int NUM_FIGHTERS= 15;
+const int FIGHTER_MAX_TIME = 5000;
 EStation::EStation(void)
 {
 	mesh = Mesh();
@@ -57,11 +58,15 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 	mat.Diffuse = XMFLOAT4(0.77f, 0.77f, 1.0f, 1.0f);
 	mat.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 16.0f);
 #pragma endregion
-	worldPTR= w;
-	//for(int i = 0; i < NUM_FIGHTERS; i++)
-	//{
-		//fighters.push_back(new EFighter());
-	//}
+	worldPTR = w;
+	for(int i = 0; i < NUM_FIGHTERS; i++)
+	{
+		fighters.push_back(new EFighter());
+	}
+	for(int i = 0; i < NUM_FIGHTERS; i++)
+		fighters[i]->Init(device, w, pos);
+	fighterTimer = FIGHTER_MAX_TIME;
+	currentFighters = 0;
 
 	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
 
@@ -70,23 +75,32 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 
 void EStation::Update()
 {
-	for(int i = 0; i < NUM_FIGHTERS; i++)
+	for(int i = 0; i < currentFighters; i++)
 	{
-		//fighters[i]->Update();
+		fighters[i]->Update();
 	}
+	
+	fighterTimer --;
 }
 
-void EStation::SpawnFighter()
+bool EStation::SpawnFighter()
 {
-	int i = 0;
-	while(true)
+	if(fighterTimer <= 0)
 	{
-		if(i ==  NUM_FIGHTERS)
-			return;
-		//if(!fighters[i]->IsActive())
+		int i = 0;
+		while(true)
 		{
-			//fighters[i]->Init(device, world, pos);
-			return;
+			if(i ==  NUM_FIGHTERS)
+				return false;
+			if(!fighters[i]->IsActive())
+			{
+				fighters[i]->GoActive();
+				worldPTR->AddEntity(fighters[i]);
+				fighterTimer = FIGHTER_MAX_TIME;
+				currentFighters++;
+				return true;
+			}
+			i++;
 		}
 	}
 }

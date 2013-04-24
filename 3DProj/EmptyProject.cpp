@@ -163,6 +163,7 @@ void BoxApp::UpdateScene(float dt)
 	if(qDown==true) cam->Roll(.05);
 
 	w->playerShip->update();
+	w->Update();
 	
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
@@ -177,6 +178,7 @@ void BoxApp::UpdateScene(float dt)
 	//XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 	cam->Update();
+
 // 	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
 // 	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
 // 	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);

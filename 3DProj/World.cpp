@@ -24,6 +24,12 @@ void World::AddEntity(Entity* e)
 	entities.push_back(e);
 }
 
+void World::AddStation(EStation* e)
+{
+	entities.push_back(e);
+	stations.push_back(e);
+}
+
 void World::Init(ID3D11Device* device,BoxApp* mApp)
 {
 	playerShip = new Ship();
@@ -39,8 +45,20 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 
 	EStation* temp = new EStation();
 	temp->Init(device, this,XMFLOAT3(0,0,-100));
-	entities.push_back(temp);
+	AddStation(temp);
 	mainApp=mApp;
+}
+
+void World::Update()
+{
+	for(std::vector<Entity*>::iterator iter = entities.begin(); iter < entities.end(); iter++)
+	{
+		(*iter)->Update();
+	}
+	for(std::vector<EStation*>::iterator iter = stations.begin(); iter < stations.end(); iter++)
+	{
+		(*iter)->SpawnFighter();
+	}
 }
 
 void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
