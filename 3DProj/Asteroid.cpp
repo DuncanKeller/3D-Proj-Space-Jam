@@ -63,3 +63,8 @@ void Asteroid::Init(ID3D11Device* d, World* w, XMFLOAT3 startPos)
 	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
 
 }
+
+void Asteroid::Update()
+{
+
+}

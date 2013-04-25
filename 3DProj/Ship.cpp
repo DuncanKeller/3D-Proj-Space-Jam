@@ -21,6 +21,10 @@ void Ship::Init(ID3D11Device* device,World* w)
 	up = XMFLOAT3(0,1,0);
 	right = XMFLOAT3(-1,0,0);
 
+	fireCooldown = .5f;
+	timeSinceFire=0;
+	canFire=true;
+
 	maxVel2 = .025;
 	vdec = .9999;
 
@@ -105,8 +109,17 @@ void Ship::strafe(float speed)
 	}
 }
 
-void Ship::update()
+void Ship::update(float dt)
 {
+	if(canFire==false)
+	{
+		timeSinceFire+=dt;
+		if(timeSinceFire>fireCooldown)
+		{
+			timeSinceFire=0;
+			canFire=true;
+		}
+	}
 	pos.x += vel.x;
 	pos.y += vel.y;
 	pos.z += vel.z;

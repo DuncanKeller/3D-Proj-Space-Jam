@@ -154,45 +154,7 @@ void BoxApp::UpdateScene(float dt)
 	mLastMousePos.y = midY;
 	SetCursorPos(midX,midY);
 
-<<<<<<< HEAD
-	w->projManager.Update(dt);
-	if(wDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*.015+w->playerShip->pos.z;
-	}
-	if(aDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*-.015+w->playerShip->pos.z;
-	}
-	if(sDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*-.015+w->playerShip->pos.z;
-	}
-	if(dDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*.015+w->playerShip->pos.z;
-	}
-	if(eDown==true)
-	{
-		cam->Roll(-.05);
-	}
-	if(qDown==true)
-	{
-		cam->Roll(.05);
-	}
-	if(spaceDown==true)
-	{
-		w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,0,0);
-	}
-=======
+
 	// push in forward direction, strafe sideways
 	if(wDown==true) w->playerShip->push(.015);
 	if(aDown==true) w->playerShip->strafe(-.015);
@@ -202,10 +164,21 @@ void BoxApp::UpdateScene(float dt)
 	if(eDown==true) cam->Roll(-.05);
 	if(qDown==true) cam->Roll(.05);
 
-	w->playerShip->update();
+	if(spaceDown==true)
+	{
+		if(w->playerShip->canFire)
+		{
+			w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,.1f,1);
+			w->playerShip->canFire=false;
+		}
+		
+	}
+
+	w->projManager.Update(dt);
+	w->playerShip->update(dt);
 	w->Update();
 	
->>>>>>> upstream/master
+
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);

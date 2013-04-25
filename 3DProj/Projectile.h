@@ -19,7 +19,7 @@ public:
 	void Init(ID3D11Device*,World*,Mesh m);
 
 	float lifetime;
-	int velocity;
+	float velocity;
 
 	float currentLifeTime;
 private:

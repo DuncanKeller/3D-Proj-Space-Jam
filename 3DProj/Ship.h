@@ -20,10 +20,15 @@ public:
 
 	void push(float speed);
 	void strafe(float speed);
-	void update();
+	void update(float dt);
 
 	float maxVel2;
 	float vdec;
+
+	float fireCooldown;
+	float timeSinceFire;
+
+	bool canFire;
 private:
 	Mesh mesh;
 

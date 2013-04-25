@@ -25,6 +25,7 @@ public:
 
 	std::vector<Projectile*> projectiles;
 	std::vector<Projectile*> active;
+	std::vector<std::vector<Projectile*>::iterator> toRemove;
 private:
 	Mesh mesh;
 
