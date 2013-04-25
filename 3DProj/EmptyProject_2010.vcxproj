@@ -401,6 +401,8 @@
     <ClCompile Include="LightHelper.cpp" />
     <ClCompile Include="MathHelper.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Projectile.cpp" />
+    <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="World.cpp" />
@@ -419,6 +421,8 @@
     <ClInclude Include="EmptyProject.h" />
     <ClInclude Include="EStation.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Projectile.h" />
+    <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="World.h" />

@@ -8,6 +8,8 @@
 
 #include "Ship.h"
 #include "EStation.h"
+#include "ProjectileManager.h"
+
 class BoxApp;
 
 class World
@@ -26,6 +28,8 @@ public:
 	std::vector<Entity*> entities;
 	Ship* playerShip;
 	BoxApp* mainApp;
+
+	ProjectileManager projManager;
 
 };
 

@@ -54,6 +54,7 @@ public:
 	bool dDown;
 	bool eDown;
 	bool qDown;
+	bool spaceDown;
 
 	Camera* cam;
 private:

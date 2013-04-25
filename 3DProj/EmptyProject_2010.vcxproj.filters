@@ -106,6 +106,12 @@
     <ClCompile Include="EStation.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -181,6 +187,12 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="EStation.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Projectile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileManager.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

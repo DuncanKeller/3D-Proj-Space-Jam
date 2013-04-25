@@ -26,6 +26,8 @@ void World::AddEntity(Entity* e)
 
 void World::Init(ID3D11Device* device,BoxApp* mApp)
 {
+	projManager = ProjectileManager();
+	projManager.Init(device,this);
 	playerShip = new Ship();
 	entities.push_back(playerShip);
 	Ship* tempShip = new Ship();
@@ -49,4 +51,5 @@ void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 	{
 		(*iter)->Draw(context, tech);
 	}
+	projManager.Draw(context, tech);
 }

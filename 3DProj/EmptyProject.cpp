@@ -45,6 +45,7 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	dDown = false;
 	eDown = false;
 	qDown = false;
+	spaceDown =  false;
 	XMMATRIX I = XMMatrixIdentity();
 	//XMStoreFloat4x4(&mWorld, I);
 	XMStoreFloat4x4(&mView, I);
@@ -153,6 +154,7 @@ void BoxApp::UpdateScene(float dt)
 	mLastMousePos.y = midY;
 	SetCursorPos(midX,midY);
 
+	w->projManager.Update(dt);
 	if(wDown==true)
 	{
 		w->playerShip->pos.x=w->playerShip->fwd.x*.015+w->playerShip->pos.x;
@@ -184,6 +186,10 @@ void BoxApp::UpdateScene(float dt)
 	if(qDown==true)
 	{
 		cam->Roll(.05);
+	}
+	if(spaceDown==true)
+	{
+		w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,0,0);
 	}
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
@@ -335,6 +341,9 @@ void BoxApp::OnKeyDown(WPARAM keyState)
 	case 'Q':
 		qDown = true;
 		break;
+	case ' ':
+		spaceDown = true;
+		break;
 	case 0x1B:
 		exit(0);
 		break;
@@ -362,6 +371,9 @@ void BoxApp::OnKeyUp(WPARAM keyState)
 		break;
 	case 'Q':
 		qDown = false;
+		break;
+	case ' ':
+		spaceDown = false;
 		break;
 	};
 };
