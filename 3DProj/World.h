@@ -8,6 +8,7 @@
 
 #include "Ship.h"
 #include "EStation.h"
+#include "Asteroid.h"
 class BoxApp;
 
 class World

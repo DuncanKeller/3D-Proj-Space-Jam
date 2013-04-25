@@ -41,6 +41,16 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 	entities.push_back(temp);
 	mainApp=mApp;
 
+	// asteroids
+	for(int i = 0; i < 25; i++)
+	{
+		float x = (rand() % 800) - 400;
+		float y = (rand() % 800) - 400;
+		float z = (rand() % 800) - 400;
+		Asteroid* a = new Asteroid();
+		a->Init(device, this, XMFLOAT3(x, y, z));
+		entities.push_back(a);
+	}
 }
 
 void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)

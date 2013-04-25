@@ -15,11 +15,11 @@ Asteroid::~Asteroid(void)
 
 void Asteroid::Init(ID3D11Device* d, World* w, XMFLOAT3 startPos)
 {
-	gWorld = w;
+	worldPTR = w;
 	device = d;
 	pos = XMFLOAT3(startPos.x, startPos.y, startPos.z);
 
-	scale = XMFLOAT3(1,1,1);
+	scale = XMFLOAT3(10,10,10);
 
 	#pragma region meshing
 	mesh.Load("Assets/asteroid.obj");
