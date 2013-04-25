@@ -154,6 +154,7 @@ void BoxApp::UpdateScene(float dt)
 	mLastMousePos.y = midY;
 	SetCursorPos(midX,midY);
 
+<<<<<<< HEAD
 	w->projManager.Update(dt);
 	if(wDown==true)
 	{
@@ -191,6 +192,20 @@ void BoxApp::UpdateScene(float dt)
 	{
 		w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,0,0);
 	}
+=======
+	// push in forward direction, strafe sideways
+	if(wDown==true) w->playerShip->push(.015);
+	if(aDown==true) w->playerShip->strafe(-.015);
+	if(sDown==true) w->playerShip->push(-.015);
+	if(dDown==true) w->playerShip->strafe(.015);
+	
+	if(eDown==true) cam->Roll(-.05);
+	if(qDown==true) cam->Roll(.05);
+
+	w->playerShip->update();
+	w->Update();
+	
+>>>>>>> upstream/master
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -204,6 +219,7 @@ void BoxApp::UpdateScene(float dt)
 	//XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 	cam->Update();
+
 // 	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
 // 	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
 // 	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);

@@ -17,6 +17,7 @@ public:
 	void Update();
 	void Attack();
 	bool IsActive();
+	void GoActive();
 private:
 	Mesh mesh;
 	EStation* station;
@@ -26,4 +27,6 @@ private:
 	int attackTimer;
 };
 #endif
+
+
 

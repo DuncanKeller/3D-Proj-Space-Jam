@@ -5,6 +5,7 @@
 #include "World.h"
 
 const int ATK_COOLDOWN = 30;
+const float MAX_SPEED = .005;
 EFighter::EFighter(void)
 {
 	mesh = Mesh();
@@ -18,11 +19,18 @@ EFighter::~EFighter(void)
 void EFighter::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 {
 	pos = XMFLOAT3(startPos.x, startPos.y, startPos.z);
+	
+	scale = XMFLOAT3(.25,.25,.25);
+	active = false;
 	//pos.y + 5;
+	up = XMFLOAT3(0,1,0);
+	right = XMFLOAT3(-1,0,0);
 #pragma region meshing
 	mesh.Load("Assets/SpaceShipTex.obj");
 
-	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
+	XMVECTOR scaleVect=  XMLoadFloat3(&scale);
+	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity()*XMMatrixScalingFromVector(scaleVect));
+	//XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
 
 	mesh.texturePath =(L"Assets/ShipTex2.bmp");
 	vertNum = mesh.numInd;
@@ -69,12 +77,26 @@ bool EFighter::IsActive()
 	return active;
 }
 
+void EFighter::GoActive()
+{
+	active = true;
+}
+
 void EFighter::Update()
 {
 	if(active)
 	{
 		attackTimer++;
 		//do stuff
+		XMFLOAT3 stuff(worldPTR->playerShip->pos.x - pos.x, worldPTR->playerShip->pos.y - pos.y, worldPTR->playerShip->pos.z - pos.z);
+		XMVECTOR forward = XMLoadFloat3(&stuff);
+		float mag = sqrt(stuff.x*stuff.x + stuff.y*stuff.y + stuff.z*stuff.z);
+		stuff.x = (stuff.x/mag)*MAX_SPEED;
+		stuff.y = (stuff.y/mag)*MAX_SPEED;
+		stuff.z = (stuff.z/mag)*MAX_SPEED;
+
+		pos = XMFLOAT3(pos.x + stuff.x, pos.y + stuff.y, pos.z + stuff.z);
+
 	}
 }
 
@@ -82,6 +104,7 @@ void EFighter::Attack()
 {
 	if(attackTimer > ATK_COOLDOWN)
 	{
+
 		attackTimer = 0;
 	}
 }

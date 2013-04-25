@@ -19,13 +19,16 @@ public:
 	~World(void);
 	void AddEntity(Entity);
 	void AddEntity(Entity*);
+	void AddStation(EStation* e);
 	void TransformEntity(Entity);
 	void TransformWorld();
 
 	void Init(ID3D11Device*,BoxApp*);
 	void Draw(ID3D11DeviceContext*, ID3DX11EffectTechnique*);
+	void Update();
 
 	std::vector<Entity*> entities;
+	std::vector<EStation*> stations;
 	Ship* playerShip;
 	BoxApp* mainApp;
 
