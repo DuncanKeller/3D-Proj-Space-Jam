@@ -1,19 +1,33 @@
-<<<<<<< HEAD
-﻿Build started 4/24/2013 11:46:06 PM.
+﻿Build started 4/29/2013 2:21:57 PM.
      1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
-         Creating "Debug\EmptyProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\EmptyProject.unsuccessfulbuild".
        ClCompile:
          All outputs are up-to-date.
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt World.cpp  
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt EFighter.cpp Entity.cpp EStation.cpp Projectile.cpp ProjectileManager.cpp Ship.cpp World.cpp EmptyProject.cpp  
+         EFighter.cpp
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\efighter.cpp(92): warning C4189: 'forward' : local variable is initialized but not referenced
+         Entity.cpp
+         EStation.cpp
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(91): warning C4127: conditional expression is constant
+         Projectile.cpp
+         ProjectileManager.cpp
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(78): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         Ship.cpp
          World.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(47): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(48): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(49): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(51): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(52): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(53): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+         EmptyProject.cpp
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(190): warning C4189: 'pos' : local variable is initialized but not referenced
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(209): warning C4238: nonstandard extension used : class rvalue used as lvalue
+         Generating Code...
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(106): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
        ResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\EmptyProject.res" EmptyProject.rc 
        ManifestResourceCompile:
-         All outputs are up-to-date.
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\rc.exe /nologo /fo"Debug\EmptyProject.exe.embed.manifest.res" Debug\EmptyProject_manifest.rc 
        Link:
          c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe" /INCREMENTAL /NOLOGO /LIBPATH:d3d11.lib /LIBPATH:d3dcompiler.lib /LIBPATH:d3dx11d.lib /LIBPATH:d3dx10d.lib /LIBPATH:d3dx9d.lib /LIBPATH:dxerr.lib /LIBPATH:dxguid.lib /LIBPATH:winmm.lib /LIBPATH:comctl32.lib /LIBPATH:Effects11d.lib /LIBPATH:d3d11.lib /LIBPATH:d3dcompiler.lib /LIBPATH:d3dx11d.lib /LIBPATH:d3dx10d.lib /LIBPATH:d3dx9d.lib /LIBPATH:dxerr.lib /LIBPATH:dxguid.lib /LIBPATH:winmm.lib /LIBPATH:comctl32.lib /LIBPATH:kernel32.lib /LIBPATH:user32.lib /LIBPATH:gdi32.lib /LIBPATH:winspool.lib /LIBPATH:comdlg32.lib /LIBPATH:advapi32.lib /LIBPATH:shell32.lib /LIBPATH:ole32.lib /LIBPATH:oleaut32.lib /LIBPATH:uuid.lib /LIBPATH:odbc32.lib /LIBPATH:odbccp32.lib Effects11d.lib d3d11.lib d3dcompiler.lib d3dx11d.lib d3dx10d.lib d3dx9d.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Debug\EmptyProject.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.lib" /MACHINE:X86 Debug\EmptyProject.res
          Debug\EmptyProject.exe.embed.manifest.res
@@ -38,10 +52,21 @@
          Debug\LightHelper.obj
          Debug\MathHelper.obj
          Debug\Mesh.obj
+         Debug\Projectile.obj
+         Debug\ProjectileManager.obj
          Debug\Ray.obj
          Debug\Ship.obj
          Debug\World.obj
          Debug\EmptyProject.obj  
+         LINK : C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe not found or not built by the last incremental link; performing full link
+            Creating library C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.lib and object C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exp
+     1>Effects11d.lib(d3dx11dbg.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(d3dxGlobal.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(EffectAPI.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(EffectLoad.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(EffectNonRuntime.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(EffectReflection.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
+     1>Effects11d.lib(EffectRuntime.obj) : warning LNK4204: 'C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\vc100.pdb' is missing debugging information for referencing module; linking object as if no debug info
        Manifest:
          C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Debug\EmptyProject.exe.embed.manifest" /manifest Debug\EmptyProject.exe.intermediate.manifest "c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\Include\Manifest\dpiaware.manifest"
          All outputs are up-to-date.
@@ -55,23 +80,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:02.89
-=======
-﻿  EFighter.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\efighter.cpp(92): warning C4189: 'forward' : local variable is initialized but not referenced
-  EStation.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\estation.cpp(91): warning C4127: conditional expression is constant
-  EmptyProject.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(190): warning C4189: 'pos' : local variable is initialized but not referenced
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(209): warning C4238: nonstandard extension used : class rvalue used as lvalue
-  Entity.cpp
-  Projectile.cpp
-  ProjectileManager.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(59): warning C4018: '<' : signed/unsigned mismatch
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(78): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-  Ship.cpp
-  World.cpp
-  Generating Code...
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\estation.cpp(106): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
-  EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe
->>>>>>> 13e86b64c07722fc566db3b2696eca55a65fcb67
+Time Elapsed 00:00:08.49

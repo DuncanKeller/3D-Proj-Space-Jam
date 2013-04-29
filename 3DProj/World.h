@@ -8,12 +8,9 @@
 
 #include "Ship.h"
 #include "EStation.h"
-<<<<<<< HEAD
 #include "Asteroid.h"
-=======
 #include "ProjectileManager.h"
 
->>>>>>> 13e86b64c07722fc566db3b2696eca55a65fcb67
 class BoxApp;
 
 class World
