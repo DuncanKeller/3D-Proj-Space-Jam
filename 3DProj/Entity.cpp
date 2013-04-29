@@ -45,6 +45,10 @@ void Entity::Init(ID3D11Device* md3dDevice,World* w)
 	worldPTR = w;
 }
 
+void Entity::Update()
+{
+}
+
 void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 {
 	//XMMATRIX I = XMMatrixIdentity();

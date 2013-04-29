@@ -106,7 +106,15 @@
     <ClCompile Include="EStation.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Asteroid.cpp" />
+    <ClCompile Include="Projectile.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Asteroid.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -184,7 +192,15 @@
     <ClInclude Include="EStation.h">
       <Filter>Headers</Filter>
     </ClInclude>
-    <ClInclude Include="Asteroid.h" />
+    <ClInclude Include="Projectile.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileManager.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Asteroid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CLInclude Include="resource.h">

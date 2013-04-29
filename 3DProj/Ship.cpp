@@ -15,10 +15,18 @@ Ship::~Ship(void)
 void Ship::Init(ID3D11Device* device,World* w)
 {
 	pos = XMFLOAT3(0,0,0);
+	vel = XMFLOAT3(0,0,0);
 	scale = XMFLOAT3(1,1,1);
 	fwd = XMFLOAT3(0,0,-1);
 	up = XMFLOAT3(0,1,0);
 	right = XMFLOAT3(-1,0,0);
+
+	fireCooldown = .5f;
+	timeSinceFire=0;
+	canFire=true;
+
+	maxVel2 = .025;
+	vdec = .9999;
 
 	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
 	mesh.Load("Assets/SpaceShipTex.obj");
@@ -59,4 +67,64 @@ void Ship::Init(ID3D11Device* device,World* w)
 	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
 
 	
+}
+
+void Ship::push(float speed)
+{
+	vel.x += fwd.x*(speed/1000);
+	vel.y += fwd.y*(speed/1000);
+	vel.z += fwd.z*(speed/1000);
+
+	// calculate velocity squared
+	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;
+
+	if (vel2 >= maxVel2)
+	{
+		// temporarily use vel2 for the sake of clamping
+		vel2 = sqrt(vel2);
+
+		vel.x = (vel.x / vel2) * maxVel2;
+		vel.y = (vel.y / vel2) * maxVel2;
+		vel.z = (vel.z / vel2) * maxVel2;
+	}
+}
+
+void Ship::strafe(float speed)
+{
+	vel.x += right.x*(speed/1000);
+	vel.y += right.y*(speed/1000);
+	vel.z += right.z*(speed/1000);
+
+	// calculate velocity squared
+	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;
+
+	if (vel2 >= maxVel2)
+	{
+		// temporarily use vel2 for the sake of clamping
+		vel2 = sqrt(vel2);
+
+		vel.x = (vel.x / vel2) * maxVel2;
+		vel.y = (vel.y / vel2) * maxVel2;
+		vel.z = (vel.z / vel2) * maxVel2;
+	}
+}
+
+void Ship::update(float dt)
+{
+	if(canFire==false)
+	{
+		timeSinceFire+=dt;
+		if(timeSinceFire>fireCooldown)
+		{
+			timeSinceFire=0;
+			canFire=true;
+		}
+	}
+	pos.x += vel.x;
+	pos.y += vel.y;
+	pos.z += vel.z;
+
+	vel.x *= vdec;
+	vel.y *= vdec;
+	vel.z *= vdec;
 }

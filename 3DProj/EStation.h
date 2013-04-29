@@ -19,12 +19,15 @@ public:
 	~EStation(void);
 	void Init(ID3D11Device* device,World* w, XMFLOAT3 startPos);
 	void Update();
-	void SpawnFighter();
+	bool SpawnFighter();
 	void Fire();
+	
+	int fighterTimer;
 
 private:
 	Mesh mesh;
-	//std::vector<EFighter*> fighters;
+	int currentFighters;
+	std::vector<EFighter*> fighters;
 	World* gWorld;
 	ID3D11Device* device;
 };

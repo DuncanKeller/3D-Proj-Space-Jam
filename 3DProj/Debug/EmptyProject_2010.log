@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 4/24/2013 11:46:06 PM.
      1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
@@ -55,3 +56,22 @@
 Build succeeded.
 
 Time Elapsed 00:00:02.89
+=======
+﻿  EFighter.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\efighter.cpp(92): warning C4189: 'forward' : local variable is initialized but not referenced
+  EStation.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\estation.cpp(91): warning C4127: conditional expression is constant
+  EmptyProject.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(190): warning C4189: 'pos' : local variable is initialized but not referenced
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(209): warning C4238: nonstandard extension used : class rvalue used as lvalue
+  Entity.cpp
+  Projectile.cpp
+  ProjectileManager.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(59): warning C4018: '<' : signed/unsigned mismatch
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(78): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+  Ship.cpp
+  World.cpp
+  Generating Code...
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\estation.cpp(106): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
+  EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe
+>>>>>>> 13e86b64c07722fc566db3b2696eca55a65fcb67

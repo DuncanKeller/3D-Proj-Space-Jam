@@ -45,6 +45,7 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	dDown = false;
 	eDown = false;
 	qDown = false;
+	spaceDown =  false;
 	XMMATRIX I = XMMatrixIdentity();
 	//XMStoreFloat4x4(&mWorld, I);
 	XMStoreFloat4x4(&mView, I);
@@ -153,38 +154,31 @@ void BoxApp::UpdateScene(float dt)
 	mLastMousePos.y = midY;
 	SetCursorPos(midX,midY);
 
-	if(wDown==true)
+
+	// push in forward direction, strafe sideways
+	if(wDown==true) w->playerShip->push(.015);
+	if(aDown==true) w->playerShip->strafe(-.015);
+	if(sDown==true) w->playerShip->push(-.015);
+	if(dDown==true) w->playerShip->strafe(.015);
+	
+	if(eDown==true) cam->Roll(-.05);
+	if(qDown==true) cam->Roll(.05);
+
+	if(spaceDown==true)
 	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*.015+w->playerShip->pos.z;
+		if(w->playerShip->canFire)
+		{
+			w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,.1f,1);
+			w->playerShip->canFire=false;
+		}
+		
 	}
-	if(aDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*-.015+w->playerShip->pos.z;
-	}
-	if(sDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->fwd.x*-.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->fwd.y*-.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->fwd.z*-.015+w->playerShip->pos.z;
-	}
-	if(dDown==true)
-	{
-		w->playerShip->pos.x=w->playerShip->right.x*.015+w->playerShip->pos.x;
-		w->playerShip->pos.y=w->playerShip->right.y*.015+w->playerShip->pos.y;
-		w->playerShip->pos.z=w->playerShip->right.z*.015+w->playerShip->pos.z;
-	}
-	if(eDown==true)
-	{
-		cam->Roll(-.05);
-	}
-	if(qDown==true)
-	{
-		cam->Roll(.05);
-	}
+
+	w->projManager.Update(dt);
+	w->playerShip->update(dt);
+	w->Update();
+	
+
 	// Convert Spherical to Cartesian coordinates.
 	float x = mRadius*sinf(mPhi)*cosf(mTheta);
 	float z = mRadius*sinf(mPhi)*sinf(mTheta);
@@ -198,6 +192,7 @@ void BoxApp::UpdateScene(float dt)
 	//XMVECTOR up     = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
 
 	cam->Update();
+
 // 	XMVECTOR fwd = XMLoadFloat3(&w->playerShip->fwd);
 // 	XMVECTOR up = XMLoadFloat3(&w->playerShip->up);
 // 	XMVECTOR shippos = XMLoadFloat3(&w->playerShip->pos);
@@ -335,6 +330,9 @@ void BoxApp::OnKeyDown(WPARAM keyState)
 	case 'Q':
 		qDown = true;
 		break;
+	case ' ':
+		spaceDown = true;
+		break;
 	case 0x1B:
 		exit(0);
 		break;
@@ -362,6 +360,9 @@ void BoxApp::OnKeyUp(WPARAM keyState)
 		break;
 	case 'Q':
 		qDown = false;
+		break;
+	case ' ':
+		spaceDown = false;
 		break;
 	};
 };
