@@ -19,7 +19,9 @@ void Asteroid::Init(ID3D11Device* d, World* w, XMFLOAT3 startPos)
 	device = d;
 	pos = XMFLOAT3(startPos.x, startPos.y, startPos.z);
 
-	scale = XMFLOAT3(10,10,10);
+	float size = (rand() % 50) + 10;
+
+	scale = XMFLOAT3(size,size,size);
 
 	#pragma region meshing
 	mesh.Load("Assets/asteroid.obj");
