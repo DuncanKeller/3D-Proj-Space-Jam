@@ -25,7 +25,7 @@ void Ship::Init(ID3D11Device* device,World* w)
 	timeSinceFire=0;
 	canFire=true;
 
-	maxVel2 = .025;
+	maxVel2 = .028;
 	vdec = .9999;
 
 	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
