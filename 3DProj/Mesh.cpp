@@ -110,6 +110,16 @@ bool Mesh::Load( std::string path )
 
 		// set bounding box
 		bounding = new BoundingBox(xMin, xMax, yMin, yMax, zMin, zMax);
+
+		//bounding = new BoundingBox(
+		//	XMFLOAT3(xMin, yMin, zMin),
+		//	XMFLOAT3(xMin, yMin, zMax),
+		//	XMFLOAT3(xMax, yMin, zMin),
+		//	XMFLOAT3(xMax, yMin, zMax),
+		//	XMFLOAT3(xMin, yMax, zMin),
+		//	XMFLOAT3(xMin, yMax, zMax),
+		//	XMFLOAT3(xMax, yMax, zMin),
+		//	XMFLOAT3(xMax, yMax, xMax));
 	}
 
 	numVerts = faceVerts.size();

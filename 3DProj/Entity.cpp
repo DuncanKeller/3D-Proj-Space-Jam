@@ -58,6 +58,7 @@ void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 	XMMATRIX I=XMLoadFloat4x4(&mWorldNoTransl);
 	I=I*XMMatrixTranslationFromVector(translate);
 	XMStoreFloat4x4(&mWorld, I);
+	
 
 	UINT stride = sizeof(Vertex);
     UINT offset = 0;

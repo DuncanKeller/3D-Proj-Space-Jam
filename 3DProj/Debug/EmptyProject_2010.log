@@ -1,4 +1,4 @@
-﻿Build started 5/6/2013 2:39:49 PM.
+﻿Build started 5/14/2013 4:46:20 PM.
      1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\EmptyProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -34,8 +34,8 @@
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(89): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
                  c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(121): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(125): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(131): warning C4018: '<' : signed/unsigned mismatch
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(135): warning C4018: '<' : signed/unsigned mismatch
          Projectile.cpp
          ProjectileManager.cpp
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(59): warning C4018: '<' : signed/unsigned mismatch
@@ -46,7 +46,7 @@
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(52): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(53): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
          Generating Code...
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(129): warning C4715: 'Mesh::Load' : not all control paths return a value
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(139): warning C4715: 'Mesh::Load' : not all control paths return a value
      1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(106): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
        ResourceCompile:
          All outputs are up-to-date.
@@ -95,4 +95,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:11.34
+Time Elapsed 00:00:12.32
