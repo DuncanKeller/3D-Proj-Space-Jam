@@ -115,6 +115,9 @@
     <ClCompile Include="Asteroid.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
+    <ClCompile Include="Skybox.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3dx11Effect.h">
@@ -199,6 +202,9 @@
       <Filter>Headers</Filter>
     </ClInclude>
     <ClInclude Include="Asteroid.h">
+      <Filter>Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
       <Filter>Headers</Filter>
     </ClInclude>
   </ItemGroup>

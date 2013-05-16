@@ -10,6 +10,7 @@
 #include "EStation.h"
 #include "Asteroid.h"
 #include "ProjectileManager.h"
+#include "Skybox.h"
 
 class BoxApp;
 
@@ -32,10 +33,12 @@ public:
 	std::vector<EStation*> stations;
 	Ship* playerShip;
 	BoxApp* mainApp;
+	Skybox* skyBox;
 
 	Mesh shipMesh;
 	Mesh asteroidMesh;
 	Mesh stationMesh;
+	Mesh skyBoxMesh;
 
 	ProjectileManager projManager;
 

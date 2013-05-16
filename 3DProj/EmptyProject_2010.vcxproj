@@ -406,6 +406,7 @@
     <ClCompile Include="ProjectileManager.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Ship.cpp" />
+    <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="World.cpp" />
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="BoundingBox.h" />
@@ -427,6 +428,7 @@
     <ClInclude Include="ProjectileManager.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Ship.h" />
+    <ClInclude Include="Skybox.h" />
     <ClInclude Include="World.h" />
     <None Include="..\..\DXUT\Optional\directx.ico" />
     <None Include="color.fx" />

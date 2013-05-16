@@ -34,6 +34,7 @@ public:
 	ID3DX11Effect* mFX;
 	ID3DX11EffectTechnique* mTech;
 	ID3DX11EffectTechnique* mTech2;
+	ID3DX11EffectTechnique* mTechSkyBox;
 	ID3DX11EffectMatrixVariable* mfxWorld;
 	ID3DX11EffectMatrixVariable* mfxWorldInvTranspose;
 	ID3DX11EffectVectorVariable* mfxEyePosW;
@@ -44,6 +45,9 @@ public:
 	ID3DX11EffectVariable* mfxMaterial;
 
 	ID3DX11EffectShaderResourceVariable* diffuseMap;
+	ID3D11ShaderResourceView* mCubeMapSRV;
+	ID3DX11EffectShaderResourceVariable* CubeMap;
+
 	XMFLOAT4X4 mView;
 	XMFLOAT4X4 mProj;
 

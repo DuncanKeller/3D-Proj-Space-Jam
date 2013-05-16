@@ -16,6 +16,7 @@ cbuffer cbPerFrame
 };
 
 Texture2D gDiffuseMap;
+TextureCube gCubeMap;
 
 cbuffer cbPerObject
 {
@@ -40,6 +41,11 @@ struct VertexOut
 	float2 Tex	   : TEXCOORD;
 };
 
+struct VertexOut2
+{
+	float4 PosH : SV_POSITION;
+	float3 PosL : POSITION;
+};
 SamplerState samAnisotropic
 {
 	Filter = ANISOTROPIC;
@@ -142,6 +148,45 @@ technique11 IllumTech
 		SetVertexShader(CompileShader( vs_5_0, VS()));
 		SetGeometryShader(NULL);
 		SetPixelShader(CompileShader(ps_5_0, IllumPS()));
+	}
+}
+
+VertexOut2 SkyVS(VertexIn vin)
+{
+	VertexOut2 vout;
+	
+	vout.PosH = mul(float4(vin.PosL,1.0f),gWorldViewProj).xyww;
+	
+	vout.PosL = vin.PosL;
+	
+	return vout;
+}
+
+float4 SkyPS(VertexOut2 pin) : SV_Target
+{
+	return gCubeMap.Sample(samAnisotropic,pin.PosL);
+}
+
+RasterizerState NoCull
+{
+	CullMode = none;
+};
+
+DepthStencilState LessEqualsDSS
+{
+	DepthFunc = LESS_EQUAL;
+};
+
+technique11 SkyBoxTech
+{
+	pass P0
+	{
+		SetVertexShader(CompileShader(vs_5_0, SkyVS()));
+		SetGeometryShader(NULL);
+		SetPixelShader(CompileShader(ps_5_0, SkyPS()));
+		
+		SetRasterizerState(NoCull);
+		SetDepthStencilState(LessEqualsDSS,0);
 	}
 }
 

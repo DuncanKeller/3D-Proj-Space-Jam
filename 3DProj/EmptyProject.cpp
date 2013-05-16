@@ -116,7 +116,10 @@ bool BoxApp::Init()
 	BuildFX();
 	BuildVertexLayout();
 
+	HR(D3DX11CreateShaderResourceViewFromFile(md3dDevice,L"Assets/skybox.dds",0,0, &mCubeMapSRV,0));
+	CubeMap = mFX->GetVariableByName("gCubeMap")->AsShaderResource();
 
+	CubeMap->SetResource(mCubeMapSRV);
 	return true;
 }
 
@@ -418,6 +421,7 @@ void BoxApp::BuildFX()
 
 	mTech                = mFX->GetTechniqueByName("LightTech");
 	mTech2				 = mFX->GetTechniqueByName("IllumTech");
+	mTechSkyBox			 = mFX->GetTechniqueByName("SkyBoxTech");
 	mfxWorldViewProj     = mFX->GetVariableByName("gWorldViewProj")->AsMatrix();
 	mfxWorld             = mFX->GetVariableByName("gWorld")->AsMatrix();
 	mfxWorldInvTranspose = mFX->GetVariableByName("gWorldInvTranspose")->AsMatrix();

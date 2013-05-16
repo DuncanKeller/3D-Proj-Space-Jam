@@ -45,11 +45,17 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 	stationMesh.Load("Assets/EStation.obj");
 	stationMesh.texturePath =(L"Assets/spacestation.bmp");
 
+	skyBoxMesh = Mesh();
+	asteroidMesh.Load("Assets/asteroid.obj");
+
 	projManager = ProjectileManager();
 	projManager.Init(device,this);
 	playerShip = new Ship();
 	playerShip->Init(device, this,&shipMesh);
 	entities.push_back(playerShip);
+
+	skyBox = new Skybox();
+	skyBox->Init(device,this,&asteroidMesh);
 	//Ship* tempShip = new Ship();
 	//entities.push_back(tempShip);
 
@@ -88,6 +94,7 @@ void World::Update()
 	{
 		(*iter)->SpawnFighter();
 	}
+	skyBox->Update();
 }
 
 void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
@@ -98,4 +105,5 @@ void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 	}
 
 	projManager.Draw(context, mainApp->mTech2);
+	skyBox->Draw(context,mainApp->mTechSkyBox);
 }
