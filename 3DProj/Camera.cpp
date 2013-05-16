@@ -48,8 +48,10 @@ void Camera::Update()
 
 	XMVECTOR camerapos = XMVectorAdd(XMVectorAdd(XMVectorScale(targup,upOffset),XMVectorScale(targfwd,fwdOffset)),targpos);
 	XMVECTOR target = XMVectorAdd(XMVectorScale(targfwd,20.0f),targpos);
+	target = XMVectorAdd(target,XMVectorScale(targup,10.0f));
 	XMStoreFloat3(&pos,camerapos);
 	
+
 	XMMATRIX V = XMMatrixLookAtLH(camerapos, target, targup);
 	XMStoreFloat4x4(viewMat, V);
 }
@@ -58,8 +60,8 @@ void Camera::Init(XMFLOAT4X4* view, Entity* targ )
 {
 	viewMat = view;
 	targetEntity = targ;
-	fwdOffset = -50.0f;
-	upOffset = 50.0f;
+	fwdOffset = -75.0f;
+	upOffset = 30.0f;
 
 	Update();
 }

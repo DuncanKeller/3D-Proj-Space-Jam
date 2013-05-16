@@ -99,6 +99,8 @@ float4 PS(VertexOut pin) : SV_Target
 	ambient += A;
 	diffuse += D;
 	spec    += S;
+	
+	ambient += float4(0.2f,0.2f,0.2f,0.2f);
 	   
 	litColor = texColor*(ambient+diffuse)+spec;
 

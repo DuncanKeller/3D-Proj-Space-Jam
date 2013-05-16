@@ -53,9 +53,9 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	XMStoreFloat4x4(&mProj, I);
 
 	// Directional light.
-	mDirLight.Ambient  = XMFLOAT4(0.1f, 0.1f, 0.2f, 1.0f);
-	mDirLight.Diffuse  = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	mDirLight.Specular = XMFLOAT4(0.5f, 0.5f, 0.8f, 1.0f);
+	mDirLight.Ambient  = XMFLOAT4(0.1f, 0.1f, 0.1f, 1.0f);
+	mDirLight.Diffuse  = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
+	mDirLight.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 	mDirLight.Direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
 
 	mPointLight.Ambient  = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
@@ -175,7 +175,7 @@ void BoxApp::UpdateScene(float dt)
 	{
 		if(w->playerShip->canFire)
 		{
-			w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,.1f,1);
+			w->projManager.Fire(w->playerShip->mWorldNoTransl,w->playerShip->pos,w->playerShip->fwd,.3f,3);
 			w->playerShip->canFire=false;
 		}
 		

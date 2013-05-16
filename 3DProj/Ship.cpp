@@ -80,31 +80,35 @@ void Ship::push(float speed)
 	{
 		// temporarily use vel2 for the sake of clamping
 		vel2 = sqrt(vel2);
+		float tempvel = sqrt(maxVel2);
 
-		vel.x = (vel.x / vel2) * maxVel2;
-		vel.y = (vel.y / vel2) * maxVel2;
-		vel.z = (vel.z / vel2) * maxVel2;
+		vel.x = (vel.x / vel2) * tempvel;
+		vel.y = (vel.y / vel2) * tempvel;
+		vel.z = (vel.z / vel2) * tempvel;
 	}
+// 	vel.x = fwd.x*.1;
+// 	vel.y = fwd.y*.1;
+// 	vel.z = fwd.z*.1;
 }
 
 void Ship::strafe(float speed)
 {
-	vel.x += right.x*(speed/1000);
-	vel.y += right.y*(speed/1000);
-	vel.z += right.z*(speed/1000);
-
-	// calculate velocity squared
-	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;
-
-	if (vel2 >= maxVel2)
-	{
-		// temporarily use vel2 for the sake of clamping
-		vel2 = sqrt(vel2);
-
-		vel.x = (vel.x / vel2) * maxVel2;
-		vel.y = (vel.y / vel2) * maxVel2;
-		vel.z = (vel.z / vel2) * maxVel2;
-	}
+// 	vel.x += right.x*(speed/1000);
+// 	vel.y += right.y*(speed/1000);
+// 	vel.z += right.z*(speed/1000);
+// 
+// 	// calculate velocity squared
+// 	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;
+// 
+// 	if (vel2 >= maxVel2)
+// 	{
+// 		// temporarily use vel2 for the sake of clamping
+// 		vel2 = sqrt(vel2);
+// 
+// 		vel.x = (vel.x / vel2) * maxVel2;
+// 		vel.y = (vel.y / vel2) * maxVel2;
+// 		vel.z = (vel.z / vel2) * maxVel2;
+// 	}
 }
 
 void Ship::update(float dt)
@@ -125,4 +129,7 @@ void Ship::update(float dt)
 	vel.x *= vdec;
 	vel.y *= vdec;
 	vel.z *= vdec;
+// 	vel.x=0;
+// 	vel.y=0;
+// 	vel.z=0;
 }

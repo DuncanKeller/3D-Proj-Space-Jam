@@ -42,14 +42,13 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 
 	stationMesh = Mesh();
 	stationMesh.Load("Assets/EStation.obj");
-	stationMesh.texturePath =(L"Assets/ShipTex2.bmp");
+	stationMesh.texturePath =(L"Assets/spacestation.bmp");
 
 	projManager = ProjectileManager();
 	projManager.Init(device,this);
 	playerShip = new Ship();
 	playerShip->Init(device, this,&shipMesh);
 	entities.push_back(playerShip);
-<<<<<<< HEAD
 	//Ship* tempShip = new Ship();
 	//entities.push_back(tempShip);
 
@@ -57,15 +56,6 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 // 	{
 // 		(*iter)->Init(device,this);
 // 	}
-=======
-	/*Ship* tempShip = new Ship();
-	entities.push_back(tempShip);*/
-
-	for(std::vector<Entity*>::iterator iter = entities.begin(); iter < entities.end(); iter++)
-	{
-		(*iter)->Init(device,this);
-	}
->>>>>>> c8b06dd58383fbac1c7a452c7ddc078b99dd926f
 	//tempShip->pos=XMFLOAT3(20,0,0);
 
 	// asteroids
@@ -96,13 +86,7 @@ void World::Update()
 	for(std::vector<EStation*>::iterator iter = stations.begin(); iter < stations.end(); iter++)
 	{
 		(*iter)->SpawnFighter();
-		for(std::vector<EFighter*>::iterator iter2 = (*iter)->fighters.begin(); iter2 < (*iter)->fighters.end(); iter2++)
-		{
-			(*iter2)->Update();
-		}
-
 	}
-
 }
 
 void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
@@ -112,13 +96,4 @@ void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 		(*iter)->Draw(context, tech);
 	}
 	projManager.Draw(context, tech);
-
-	for(std::vector<EStation*>::iterator iter = stations.begin(); iter < stations.end(); iter++)
-	{
-		for(std::vector<EFighter*>::iterator iter2 = (*iter)->fighters.begin(); iter2 < (*iter)->fighters.end(); iter2++)
-		{
-			(*iter2)->Draw(context, tech);
-		}
-
-	}
 }
