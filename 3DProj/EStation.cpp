@@ -13,16 +13,12 @@ EStation::~EStation(void)
 {
 }
 
-<<<<<<< HEAD
-void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m)
-=======
 std::vector<EFighter*> EStation::GetFighters()
 {
 	return fighters;
 }
 
-void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
->>>>>>> c8b06dd58383fbac1c7a452c7ddc078b99dd926f
+void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m)
 {
 	mesh = m;
 	//device = aDevice;
@@ -71,13 +67,10 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 	{
 		fighters.push_back(new EFighter());
 	}
-<<<<<<< HEAD
-	for(int i = 0; i < NUM_FIGHTERS; i++)
-		fighters[i]->Init(device, w, pos,&(w->shipMesh));
-=======
+
 	for(int i = 0; i < num; i++)
-		fighters[i]->Init(device, w, pos);
->>>>>>> c8b06dd58383fbac1c7a452c7ddc078b99dd926f
+		fighters[i]->Init(device, w, pos,&(w->shipMesh));
+
 	fighterTimer = FIGHTER_MAX_TIME;
 	currentFighters = 0;
 

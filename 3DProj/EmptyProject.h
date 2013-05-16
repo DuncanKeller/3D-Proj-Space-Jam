@@ -33,6 +33,7 @@ public:
 	
 	ID3DX11Effect* mFX;
 	ID3DX11EffectTechnique* mTech;
+	ID3DX11EffectTechnique* mTech2;
 	ID3DX11EffectMatrixVariable* mfxWorld;
 	ID3DX11EffectMatrixVariable* mfxWorldInvTranspose;
 	ID3DX11EffectVectorVariable* mfxEyePosW;

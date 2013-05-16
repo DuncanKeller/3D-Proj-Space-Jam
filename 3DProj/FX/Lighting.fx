@@ -110,6 +110,21 @@ float4 PS(VertexOut pin) : SV_Target
     return litColor;
 }
 
+float4 IllumPS(VertexOut pin) : SV_Target
+{
+	// Interpolating normal can unnormalize it, so normalize it.
+    pin.NormalW = normalize(pin.NormalW); 
+
+	float3 toEyeW = normalize(gEyePosW - pin.PosW);
+	
+	float4 texColor = float4(1,1,1,1);
+	texColor = gDiffuseMap.Sample(samAnisotropic,pin.Tex);
+	
+	
+
+    return texColor;
+}
+
 technique11 LightTech
 {
     pass P0
@@ -118,6 +133,16 @@ technique11 LightTech
 		SetGeometryShader( NULL );
         SetPixelShader( CompileShader( ps_5_0, PS() ) );
     }
+}
+
+technique11 IllumTech
+{
+	pass P0
+	{
+		SetVertexShader(CompileShader( vs_5_0, VS()));
+		SetGeometryShader(NULL);
+		SetPixelShader(CompileShader(ps_5_0, IllumPS()));
+	}
 }
 
 

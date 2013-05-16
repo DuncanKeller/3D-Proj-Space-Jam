@@ -1,5 +1,6 @@
 #include "DXUT.h"
 #include "World.h"
+#include "EmptyProject.h"
 
 
 
@@ -95,5 +96,6 @@ void World::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
 	{
 		(*iter)->Draw(context, tech);
 	}
-	projManager.Draw(context, tech);
+
+	projManager.Draw(context, mainApp->mTech2);
 }

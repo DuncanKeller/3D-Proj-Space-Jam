@@ -32,12 +32,9 @@ void EFighter::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m)
 	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity()*XMMatrixScalingFromVector(scaleVect));
 	//XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
 
-<<<<<<< HEAD
+
 	vertNum = mesh->numInd;
-=======
-	mesh.texturePath =(L"Assets/EnemyShip.bmp");
-	vertNum = mesh.numInd;
->>>>>>> c8b06dd58383fbac1c7a452c7ddc078b99dd926f
+
 
 	D3D11_BUFFER_DESC vbd;
 	vbd.Usage = D3D11_USAGE_IMMUTABLE;

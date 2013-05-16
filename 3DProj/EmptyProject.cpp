@@ -58,22 +58,22 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	mDirLight.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
 	mDirLight.Direction = XMFLOAT3(0.57735f, -0.57735f, 0.57735f);
 
-	mPointLight.Ambient  = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
-	mPointLight.Diffuse  = XMFLOAT4(0.6f, 0.0f, 0.0f, 1.0f);
-	mPointLight.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
-	mPointLight.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
-	mPointLight.Range    =50.0f;
-	mPointLight.Position = XMFLOAT3(0.0f,20.0f,20.0f);
+// 	mPointLight.Ambient  = XMFLOAT4(0.1f, 0.0f, 0.0f, 1.0f);
+// 	mPointLight.Diffuse  = XMFLOAT4(0.6f, 0.0f, 0.0f, 1.0f);
+// 	mPointLight.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
+// 	mPointLight.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
+// 	mPointLight.Range    =50.0f;
+// 	mPointLight.Position = XMFLOAT3(0.0f,20.0f,20.0f);
 
 	//mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
 	//mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
 	//mPointLight2.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 8.0f);
-	mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
-	mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
-	mPointLight2.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
-	mPointLight2.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
-	mPointLight2.Range    =50.0f;
-	mPointLight2.Position = XMFLOAT3(0.0f,20.0f,20.0f);
+// 	mPointLight2.Ambient  = XMFLOAT4(0.0f, 0.1f, 0.0f, 1.0f);
+// 	mPointLight2.Diffuse  = XMFLOAT4(0.0f, 0.6f, 0.0f, 1.0f);
+// 	mPointLight2.Specular = XMFLOAT4(0.0f, 0.0f, 0.0f, 0.0f);
+// 	mPointLight2.Att      = XMFLOAT3(0.1f, 0.05f, 0.0f);
+// 	mPointLight2.Range    =50.0f;
+// 	mPointLight2.Position = XMFLOAT3(0.0f,20.0f,20.0f);
 
 	//mShipMat.Ambient  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	//mShipMat.Diffuse  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
@@ -417,6 +417,7 @@ void BoxApp::BuildFX()
 	ReleaseCOM(compiledShader);
 
 	mTech                = mFX->GetTechniqueByName("LightTech");
+	mTech2				 = mFX->GetTechniqueByName("IllumTech");
 	mfxWorldViewProj     = mFX->GetVariableByName("gWorldViewProj")->AsMatrix();
 	mfxWorld             = mFX->GetVariableByName("gWorld")->AsMatrix();
 	mfxWorldInvTranspose = mFX->GetVariableByName("gWorldInvTranspose")->AsMatrix();

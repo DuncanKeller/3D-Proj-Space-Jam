@@ -1,5 +1,5 @@
-﻿  World.cpp
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\world.cpp(64): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\world.cpp(65): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-c:\users\jon\documents\github\3d-proj-space-jam\3dproj\world.cpp(66): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+﻿  EmptyProject.cpp
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(82): warning C4189: 'gameState' : local variable is initialized but not referenced
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(197): warning C4189: 'pos' : local variable is initialized but not referenced
+c:\users\jon\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(220): warning C4238: nonstandard extension used : class rvalue used as lvalue
   EmptyProject_2010.vcxproj -> C:\Users\Jon\Documents\GitHub\3D-Proj-Space-Jam\3DProj\Debug\EmptyProject.exe
