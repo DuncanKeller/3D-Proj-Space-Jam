@@ -347,6 +347,10 @@ void BoxApp::OnKeyDown(WPARAM keyState)
 	case ' ':
 		spaceDown = true;
 		break;
+	case 'P':
+		cam->enableExperimentalStuff++;
+		cam->enableExperimentalStuff%=2;
+		break;
 	case 0x1B:
 		exit(0);
 		break;

@@ -23,6 +23,12 @@ public:
 
 	float fwdOffset;
 	float upOffset;
+	float rightOffset;
+
+	char enableExperimentalStuff;
+
+	// maximum offsets
+	float maxRO, maxUO, maxFO;
 
 	Entity* targetEntity;
 

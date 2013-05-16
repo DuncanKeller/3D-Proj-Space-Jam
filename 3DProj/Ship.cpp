@@ -21,7 +21,7 @@ void Ship::Init(ID3D11Device* device,World* w, Mesh* m)
 	up = XMFLOAT3(0,1,0);
 	right = XMFLOAT3(-1,0,0);
 
-	fireCooldown = .5f;
+	fireCooldown = .3f;
 	timeSinceFire=0;
 	canFire=true;
 
@@ -72,6 +72,21 @@ void Ship::push(float speed)
 	vel.x += fwd.x*(speed/100);
 	vel.y += fwd.y*(speed/100);
 	vel.z += fwd.z*(speed/100);
+
+	// dot velocity and forward
+	XMVECTOR d = XMVector3Dot(XMLoadFloat3(&vel), XMLoadFloat3(&fwd));
+	
+	// get it out of an XMVECTOR
+	XMFLOAT3 dot;
+	XMStoreFloat3(&dot,d);
+
+	// if youre trying to turn around, double your acceleration
+	if (dot.x < 0)
+	{
+		vel.x += fwd.x*(speed/100)*2.0;
+		vel.y += fwd.y*(speed/100)*2.0;
+		vel.z += fwd.z*(speed/100)*2.0;
+	}
 
 	// calculate velocity squared
 	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;
