@@ -35,7 +35,7 @@ BoxApp::BoxApp(HINSTANCE hInstance)
   mfxWorldViewProj(0), mInputLayout(0), 
   mTheta(.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(40.0f)
 {
-	mMainWndCaption = L"Spcae Jam";
+	mMainWndCaption = L"Space Jam";
 	
 	mLastMousePos.x = 0;
 	mLastMousePos.y = 0;
