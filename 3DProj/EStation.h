@@ -21,13 +21,18 @@ public:
 	void Update();
 	bool SpawnFighter();
 	void Fire();
-	
+	void KillFighter(EFighter* f);
+
 	int fighterTimer;
+
+	std::vector<EFighter*> GetFighters();
+		std::vector<EFighter*> fighters;
 
 private:
 	Mesh mesh;
 	int currentFighters;
-	std::vector<EFighter*> fighters;
+
+	
 	World* gWorld;
 	ID3D11Device* device;
 };

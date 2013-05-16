@@ -10,6 +10,7 @@
 //***************************************************************************************
 
 #include "DXUT.h"
+#include "d3dx9.h"
 #include "EmptyProject.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
@@ -34,7 +35,7 @@ BoxApp::BoxApp(HINSTANCE hInstance)
   mfxWorldViewProj(0), mInputLayout(0), 
   mTheta(.5f*MathHelper::Pi), mPhi(0.25f*MathHelper::Pi), mRadius(40.0f)
 {
-	mMainWndCaption = L"Box Demo";
+	mMainWndCaption = L"Spcae Jam";
 	
 	mLastMousePos.x = 0;
 	mLastMousePos.y = 0;
@@ -77,6 +78,11 @@ BoxApp::BoxApp(HINSTANCE hInstance)
 	//mShipMat.Ambient  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	//mShipMat.Diffuse  = XMFLOAT4(0.48f, 0.77f, 0.46f, 1.0f);
 	//mShipMat.Specular = XMFLOAT4(0.2f, 0.2f, 0.2f, 16.0f);
+
+	int gameState = 0;
+	// 0 - main menu
+	// 1 - play game
+	// 2 - game over
 }
 
 BoxApp::~BoxApp()
@@ -109,6 +115,7 @@ bool BoxApp::Init()
 	BuildGeometryBuffers();
 	BuildFX();
 	BuildVertexLayout();
+
 
 	return true;
 }
@@ -206,6 +213,10 @@ void BoxApp::UpdateScene(float dt)
 
 void BoxApp::DrawScene()
 {
+	//horkus
+
+
+
 	md3dImmediateContext->ClearRenderTargetView(mRenderTargetView, reinterpret_cast<const float*>(&XMFLOAT4(29.0f/255.0f,0.0f/255.0f,48.0f/255.0f,1)));
 	md3dImmediateContext->ClearDepthStencilView(mDepthStencilView, D3D11_CLEAR_DEPTH|D3D11_CLEAR_STENCIL, 1.0f, 0);
 
@@ -440,4 +451,14 @@ void BoxApp::SetDiffuseMap( ID3D11ShaderResourceView* tex )
 {
 	diffuseMap->SetResource(tex);
 }
+/*
+void BoxApp::DrawHud()
+{
+	Vertex verts[4];
+	verts[0].Pos = XMFLOAT3(-0.5f,  -0.5f, 0.0f);
+	verts[0].Pos = XMFLOAT3(-0.5f, 239.5f, 0.0f);
+	verts[0].Pos = XMFLOAT3(351.5f,  -0.5f, 0.0f);
+	verts[0].Pos = XMFLOAT3(351.5f, 239.5f, 0.0f);
 
+}
+*/

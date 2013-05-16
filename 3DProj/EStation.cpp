@@ -4,7 +4,7 @@
 #include "World.h"
 
 const int NUM_FIGHTERS= 15;
-const int FIGHTER_MAX_TIME = 5000;
+const int FIGHTER_MAX_TIME = 500000;
 EStation::EStation(void)
 {
 	mesh = Mesh();
@@ -12,6 +12,11 @@ EStation::EStation(void)
 
 EStation::~EStation(void)
 {
+}
+
+std::vector<EFighter*> EStation::GetFighters()
+{
+	return fighters;
 }
 
 void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
@@ -59,11 +64,12 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 	mat.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 16.0f);
 #pragma endregion
 	worldPTR = w;
-	for(int i = 0; i < NUM_FIGHTERS; i++)
+	int num = NUM_FIGHTERS;
+	for(int i = 0; i < num; i++)
 	{
 		fighters.push_back(new EFighter());
 	}
-	for(int i = 0; i < NUM_FIGHTERS; i++)
+	for(int i = 0; i < num; i++)
 		fighters[i]->Init(device, w, pos);
 	fighterTimer = FIGHTER_MAX_TIME;
 	currentFighters = 0;
@@ -71,6 +77,12 @@ void EStation::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos)
 	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
 
 
+}
+
+void EStation::KillFighter(EFighter* f)
+{
+	fighters.erase(std::remove(fighters.begin(), fighters.end(), f));
+	//worldPTR->entities.erase(std::remove(worldPTR->entities.begin(), worldPTR->entities.end(), f));
 }
 
 void EStation::Update()
@@ -95,7 +107,7 @@ bool EStation::SpawnFighter()
 			if(!fighters[i]->IsActive())
 			{
 				fighters[i]->GoActive();
-				worldPTR->AddEntity(fighters[i]);
+				//worldPTR->AddEntity(fighters[i]);
 				fighterTimer = FIGHTER_MAX_TIME;
 				currentFighters++;
 				return true;

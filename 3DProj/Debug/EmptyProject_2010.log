@@ -1,53 +1,13 @@
-﻿Build started 5/14/2013 4:46:20 PM.
+﻿Build started 5/15/2013 10:02:37 PM.
      1>Project "C:\Users\Duncan\Documents\GitHub\3D-Proj-Space-Jam\3DProj\EmptyProject_2010.vcxproj" on node 2 (build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\EmptyProject.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
-         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Asteroid.cpp BoundingBox.cpp Camera.cpp EFighter.cpp EStation.cpp EmptyProject.cpp Entity.cpp Mesh.cpp Projectile.cpp ProjectileManager.cpp Ship.cpp World.cpp  
-         Asteroid.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\asteroid.cpp(22): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-         BoundingBox.cpp
-         Camera.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\camera.cpp(73): warning C4189: 'targpos' : local variable is initialized but not referenced
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\camera.cpp(96): warning C4189: 'targpos' : local variable is initialized but not referenced
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\camera.cpp(121): warning C4189: 'targpos' : local variable is initialized but not referenced
-         EFighter.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\efighter.cpp(92): warning C4189: 'forward' : local variable is initialized but not referenced
+         c:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I..\..\DXUT\Core /I..\..\DXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\EmptyProject.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt EStation.cpp  
          EStation.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(91): warning C4127: conditional expression is constant
-         EmptyProject.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(190): warning C4189: 'pos' : local variable is initialized but not referenced
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\emptyproject.cpp(209): warning C4238: nonstandard extension used : class rvalue used as lvalue
-         Entity.cpp
-         Mesh.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(18): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(234) : see declaration of 'fopen'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(34): warning C4127: conditional expression is constant
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(36): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(45): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(72): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(80): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(89): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 c:\program files (x86)\microsoft visual studio 10.0\vc\include\stdio.h(253) : see declaration of 'fscanf'
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(131): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(135): warning C4018: '<' : signed/unsigned mismatch
-         Projectile.cpp
-         ProjectileManager.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(59): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\projectilemanager.cpp(78): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-         Ship.cpp
-         World.cpp
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(51): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(52): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\world.cpp(53): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
-         Generating Code...
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\mesh.cpp(139): warning C4715: 'Mesh::Load' : not all control paths return a value
-     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(106): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(103): warning C4127: conditional expression is constant
+     1>c:\users\duncan\documents\github\3d-proj-space-jam\3dproj\estation.cpp(118): warning C4715: 'EStation::SpawnFighter' : not all control paths return a value
        ResourceCompile:
          All outputs are up-to-date.
        ManifestResourceCompile:
@@ -95,4 +55,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:12.32
+Time Elapsed 00:00:01.52
