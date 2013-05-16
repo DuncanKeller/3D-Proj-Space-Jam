@@ -23,12 +23,16 @@ public:
 	void Fire(XMFLOAT4X4 mWorldNoTransl,XMFLOAT3 pos, XMFLOAT3 fwd,float vel, int lifetime);
 	void Update(float dt);
 
+	bool Intersects(XMFLOAT3, XMFLOAT3, XMFLOAT3);
+
+	std::vector<Projectile*> GetProjs();
+
 	std::vector<Projectile*> projectiles;
 	std::vector<Projectile*> active;
 	std::vector<std::vector<Projectile*>::iterator> toRemove;
 private:
 	Mesh mesh;
-
+	World* world;
 };
 
 #endif

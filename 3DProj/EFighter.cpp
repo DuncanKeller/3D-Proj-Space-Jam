@@ -2,6 +2,7 @@
 #include "EFighter.h"
 #include "EStation.h"
 #include "EmptyProject.h"
+#include "Projectile.h"
 #include "World.h"
 
 const int ATK_COOLDOWN = 30;
@@ -31,7 +32,12 @@ void EFighter::Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m)
 	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity()*XMMatrixScalingFromVector(scaleVect));
 	//XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
 
+<<<<<<< HEAD
 	vertNum = mesh->numInd;
+=======
+	mesh.texturePath =(L"Assets/EnemyShip.bmp");
+	vertNum = mesh.numInd;
+>>>>>>> c8b06dd58383fbac1c7a452c7ddc078b99dd926f
 
 	D3D11_BUFFER_DESC vbd;
 	vbd.Usage = D3D11_USAGE_IMMUTABLE;
@@ -96,6 +102,11 @@ void EFighter::Update()
 		pos = XMFLOAT3(pos.x + stuff.x, pos.y + stuff.y, pos.z + stuff.z);
 
 	}
+
+	//std::vector<Projectile*> projs = worldPTR->projManager.GetProjs();
+
+	
+
 }
 
 void EFighter::Attack()
