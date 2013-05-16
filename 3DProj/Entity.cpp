@@ -87,7 +87,6 @@ void Entity::Draw(ID3D11DeviceContext* context, ID3DX11EffectTechnique* tech)
     {
         tech->GetPassByIndex(p)->Apply(0, context);
         
-		// 6 indices for the box.
 		context->DrawIndexed(vertNum, 0, 0);
     }
 }

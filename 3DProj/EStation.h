@@ -17,7 +17,7 @@ class EStation  : public Entity
 public:
 	EStation(void);
 	~EStation(void);
-	void Init(ID3D11Device* device,World* w, XMFLOAT3 startPos);
+	void Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m);
 	void Update();
 	bool SpawnFighter();
 	void Fire();
@@ -25,7 +25,6 @@ public:
 	int fighterTimer;
 
 private:
-	Mesh mesh;
 	int currentFighters;
 	std::vector<EFighter*> fighters;
 	World* gWorld;

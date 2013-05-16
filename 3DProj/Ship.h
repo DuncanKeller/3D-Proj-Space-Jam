@@ -16,7 +16,7 @@ public:
 	Ship();
 	~Ship();
 
-	void Init(ID3D11Device*,World*);
+	void Init(ID3D11Device*,World*, Mesh* m_);
 
 	void push(float speed);
 	void strafe(float speed);
@@ -29,9 +29,6 @@ public:
 	float timeSinceFire;
 
 	bool canFire;
-private:
-	Mesh mesh;
-
 };
 
 #endif

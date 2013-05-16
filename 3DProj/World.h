@@ -33,6 +33,10 @@ public:
 	Ship* playerShip;
 	BoxApp* mainApp;
 
+	Mesh shipMesh;
+	Mesh asteroidMesh;
+	Mesh stationMesh;
+
 	ProjectileManager projManager;
 
 };

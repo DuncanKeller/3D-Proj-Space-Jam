@@ -16,14 +16,12 @@ public:
 	Projectile();
 	~Projectile();
 
-	void Init(ID3D11Device*,World*,Mesh m);
+	void Init(ID3D11Device*,World*,Mesh* m);
 
 	float lifetime;
 	float velocity;
 
 	float currentLifeTime;
-private:
-	Mesh mesh;
 
 };
 

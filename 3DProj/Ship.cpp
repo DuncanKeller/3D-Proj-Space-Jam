@@ -4,7 +4,6 @@
 #include "World.h"
 Ship::Ship(void)
 {
-	mesh = Mesh();
 }
 
 Ship::~Ship(void)
@@ -12,8 +11,9 @@ Ship::~Ship(void)
 
 }
 
-void Ship::Init(ID3D11Device* device,World* w)
+void Ship::Init(ID3D11Device* device,World* w, Mesh* m)
 {
+	mesh = m;
 	pos = XMFLOAT3(0,0,0);
 	vel = XMFLOAT3(0,0,0);
 	scale = XMFLOAT3(1,1,1);
@@ -29,31 +29,29 @@ void Ship::Init(ID3D11Device* device,World* w)
 	vdec = .9999;
 
 	XMStoreFloat4x4(&mWorldNoTransl,XMMatrixIdentity());
-	mesh.Load("Assets/SpaceShipTex.obj");
 
-	mesh.texturePath =(L"Assets/ShipTex2.bmp");
-	vertNum = mesh.numInd;
+	vertNum = mesh->numInd;
 
 	D3D11_BUFFER_DESC vbd;
 	vbd.Usage = D3D11_USAGE_IMMUTABLE;
-	vbd.ByteWidth = sizeof(Vertex) * mesh.numVerts;
+	vbd.ByteWidth = sizeof(Vertex) * mesh->numVerts;
 	vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	vbd.CPUAccessFlags = 0;
 	vbd.MiscFlags = 0;
 	vbd.StructureByteStride = 0;
 	D3D11_SUBRESOURCE_DATA vinitData;
-	vinitData.pSysMem = mesh.vertices;
+	vinitData.pSysMem = mesh->vertices;
 	HR(device->CreateBuffer(&vbd, &vinitData, &vertexBuffer));
 
 	D3D11_BUFFER_DESC ibd2;
 	ibd2.Usage = D3D11_USAGE_IMMUTABLE;
-	ibd2.ByteWidth = sizeof(UINT) * mesh.numInd;
+	ibd2.ByteWidth = sizeof(UINT) * mesh->numInd;
 	ibd2.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	ibd2.CPUAccessFlags = 0;
 	ibd2.MiscFlags = 0;
 	ibd2.StructureByteStride = 0;
 	D3D11_SUBRESOURCE_DATA iinitData2;
-	iinitData2.pSysMem = mesh.indices;
+	iinitData2.pSysMem = mesh->indices;
 	HR(device->CreateBuffer(&ibd2, &iinitData2, &indexBuffer));
 
 	XMMATRIX I = XMMatrixIdentity();
@@ -64,16 +62,16 @@ void Ship::Init(ID3D11Device* device,World* w)
 	mat.Specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 16.0f);
 	worldPTR = w;
 
-	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh.texturePath,0,0,&mDiffuseSRV,0));
+	HR(D3DX11CreateShaderResourceViewFromFile(device,mesh->texturePath,0,0,&mDiffuseSRV,0));
 
 	
 }
 
 void Ship::push(float speed)
 {
-	vel.x += fwd.x*(speed/1000);
-	vel.y += fwd.y*(speed/1000);
-	vel.z += fwd.z*(speed/1000);
+	vel.x += fwd.x*(speed/100);
+	vel.y += fwd.y*(speed/100);
+	vel.z += fwd.z*(speed/100);
 
 	// calculate velocity squared
 	float vel2 = vel.x * vel.x + vel.y * vel.y + vel.z * vel.z;

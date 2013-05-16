@@ -30,6 +30,8 @@ public:
 	World* worldPTR;
 	Material mat;
 	ID3D11ShaderResourceView* mDiffuseSRV;
+
+	Mesh* mesh;
 protected:
 	ID3D11Buffer* vertexBuffer;
 	ID3D11Buffer* indexBuffer;

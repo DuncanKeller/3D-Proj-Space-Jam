@@ -13,13 +13,12 @@ class EFighter : public Entity
 public:
 	EFighter(void);
 	~EFighter(void);
-	void Init(ID3D11Device* device,World* w, XMFLOAT3 startPos);
+	void Init(ID3D11Device* device,World* w, XMFLOAT3 startPos, Mesh* m);
 	void Update();
 	void Attack();
 	bool IsActive();
 	void GoActive();
 private:
-	Mesh mesh;
 	EStation* station;
 	Entity* target;
 	float distanceToTarget;

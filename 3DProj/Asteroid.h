@@ -11,11 +11,10 @@ class Asteroid  : public Entity
 public:
 	Asteroid(void);
 	~Asteroid(void);
-	void Init(ID3D11Device* device, World* w, XMFLOAT3 position);
+	void Init(ID3D11Device* device, World* w, XMFLOAT3 position, Mesh* m);
 	void Update();
 
 private:
-	Mesh mesh;
 	World* gWorld;
 	ID3D11Device* device;
 

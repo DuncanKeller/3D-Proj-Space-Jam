@@ -32,18 +32,31 @@ void World::AddStation(EStation* e)
 
 void World::Init(ID3D11Device* device,BoxApp* mApp)
 {
+	shipMesh = Mesh();
+	shipMesh.Load("Assets/SpaceShipTex.obj");
+	shipMesh.texturePath =(L"Assets/ShipTex2.bmp");
+
+	asteroidMesh = Mesh();
+	asteroidMesh.Load("Assets/asteroid.obj");
+	asteroidMesh.texturePath =(L"Assets/asteroidTex.bmp");
+
+	stationMesh = Mesh();
+	stationMesh.Load("Assets/EStation.obj");
+	stationMesh.texturePath =(L"Assets/ShipTex2.bmp");
+
 	projManager = ProjectileManager();
 	projManager.Init(device,this);
 	playerShip = new Ship();
+	playerShip->Init(device, this,&shipMesh);
 	entities.push_back(playerShip);
-	Ship* tempShip = new Ship();
-	entities.push_back(tempShip);
+	//Ship* tempShip = new Ship();
+	//entities.push_back(tempShip);
 
-	for(std::vector<Entity*>::iterator iter = entities.begin(); iter < entities.end(); iter++)
-	{
-		(*iter)->Init(device,this);
-	}
-	tempShip->pos=XMFLOAT3(20,0,0);
+// 	for(std::vector<Entity*>::iterator iter = entities.begin(); iter < entities.end(); iter++)
+// 	{
+// 		(*iter)->Init(device,this);
+// 	}
+	//tempShip->pos=XMFLOAT3(20,0,0);
 
 	// asteroids
 	for(int i = 0; i < 25; i++)
@@ -52,12 +65,12 @@ void World::Init(ID3D11Device* device,BoxApp* mApp)
 		float y = (rand() % 800) - 400;
 		float z = (rand() % 800) - 400;
 		Asteroid* a = new Asteroid();
-		a->Init(device, this, XMFLOAT3(x, y, z));
+		a->Init(device, this, XMFLOAT3(x, y, z), &asteroidMesh);
 		entities.push_back(a);
 	}
 
 	EStation* temp = new EStation();
-	temp->Init(device, this,XMFLOAT3(0,0,-100));
+	temp->Init(device, this,XMFLOAT3(0,0,-100),&stationMesh);
 	AddStation(temp);
 	mainApp=mApp;
 }

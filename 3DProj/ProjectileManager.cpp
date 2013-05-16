@@ -17,10 +17,11 @@ ProjectileManager::~ProjectileManager(void)
 void ProjectileManager::Init(ID3D11Device* device,World* w)
 {
 	mesh.Load("Assets/Projectile.obj");
+	mesh.texturePath =(L"Assets/ShipTex2.bmp");
 	for(int i=0;i<20;i++)
 	{
 		Projectile* temp = new Projectile();
-		temp->Init(device, w, mesh);
+		temp->Init(device, w, &mesh);
 		projectiles.push_back(temp);
 	}
 }
